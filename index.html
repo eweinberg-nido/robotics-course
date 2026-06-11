@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robotics Course Guide — Nido de Aguilas 2025–2026</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --accent: #1a73e8;
+    --accent2: #34a853;
+    --accent3: #ea4335;
+    --accent4: #fbbc04;
+    --u1color: #1a73e8;
+    --u2color: #34a853;
+    --u3color: #ea4335;
+    --text: #202124;
+    --muted: #5f6368;
+    --border: #dadce0;
+    --tag-bg: #e8f0fe;
+    --tag-text: #1a73e8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 56px;
+  }
+  nav .brand { font-weight: 700; font-size: 1rem; color: var(--accent); white-space: nowrap; }
+  nav a { text-decoration: none; color: var(--muted); font-size: 0.875rem; white-space: nowrap; transition: color 0.15s; }
+  nav a:hover { color: var(--accent); }
+  nav .spacer { flex: 1; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+    color: white;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .hero .subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem; }
+  .hero .meta { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; opacity: 0.85; font-size: 0.9rem; }
+  .hero .meta span::before { margin-right: 0.4rem; }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+  /* SECTION TITLES */
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* TWO-COL GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  /* THREE-COL GRID */
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .grid-3 { grid-template-columns: 1fr; } }
+
+  /* UNIT BLOCKS */
+  .unit-header {
+    border-radius: 12px;
+    padding: 1.75rem 1.75rem 1rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  .unit-header.u1 { background: linear-gradient(135deg, #1a73e8, #1557b0); }
+  .unit-header.u2 { background: linear-gradient(135deg, #34a853, #1e7e34); }
+  .unit-header.u3 { background: linear-gradient(135deg, #ea4335, #b71c1c); }
+  .unit-header h2 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  .unit-header .unit-meta { opacity: 0.9; font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .unit-header .unit-desc { opacity: 0.95; font-size: 0.95rem; }
+
+  /* TAG PILLS */
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 20px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .tag.green { background: #e6f4ea; color: #1e7e34; }
+  .tag.red { background: #fce8e6; color: #c5221f; }
+  .tag.yellow { background: #fef7e0; color: #b06000; }
+  .tag.gray { background: #f1f3f4; color: #5f6368; }
+
+  /* LESSONS TABLE */
+  .lesson-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin-top: 0.5rem; }
+  .lesson-table th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    background: #f1f3f4;
+    border-bottom: 2px solid var(--border);
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .lesson-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .lesson-table tr:last-child td { border-bottom: none; }
+  .lesson-table tr:hover td { background: #f8f9fa; }
+  .lesson-table td:first-child { font-weight: 600; white-space: nowrap; color: var(--muted); }
+  .lesson-table a { color: var(--accent); text-decoration: none; }
+  .lesson-table a:hover { text-decoration: underline; }
+
+
+  .resource-local { cursor: default; color: var(--muted); }
+  /* LESSON CARDS */
+  .lc { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.875rem; overflow: hidden; }
+  .lc-header { padding: 0.55rem 0.875rem; background: #f1f3f4; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .lc-day { font-weight: 700; color: var(--muted); font-size: 0.78rem; white-space: nowrap; min-width: 3rem; font-variant-numeric: tabular-nums; }
+  .lc-title { font-weight: 600; font-size: 0.88rem; flex: 1; min-width: 8rem; }
+  .lc-header .tags { margin-top: 0; flex-shrink: 0; }
+  .lc-res { font-size: 0.78rem; color: var(--accent); text-decoration: none; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
+  .lc-res:hover { text-decoration: underline; }
+  .lc-body { display: grid; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 680px) { .lc-body { grid-template-columns: 1fr; } }
+  .lc-a { padding: 0.7rem 0.875rem; font-size: 0.855rem; border-right: 1px solid var(--border); }
+  .lc-n { padding: 0.7rem 0.875rem; font-size: 0.855rem; background: #fafbff; }
+  .lc-a strong, .lc-n strong { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 0.3rem; font-weight: 700; }
+  .lc-a p, .lc-n p { color: var(--text); line-height: 1.55; margin: 0; }
+
+  /* ASSIGNMENTS */
+  .assignment-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .assignment-row:last-child { border-bottom: none; }
+  .assignment-badge {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1.1;
+    text-align: center;
+  }
+  .badge-l2 { background: #e8f5e9; color: #2e7d32; }
+  .badge-l3 { background: #e3f2fd; color: #1565c0; }
+  .badge-l4 { background: #fce4ec; color: #880e4f; }
+  .badge-obs { background: #f3e5f5; color: #6a1b9a; }
+  .badge-sub { background: #fff3e0; color: #e65100; }
+  .assignment-info h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .assignment-info p { font-size: 0.82rem; color: var(--muted); }
+
+  /* PROFICIENCY SCALE */
+  .scale-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .scale-table th {
+    padding: 0.6rem 0.75rem;
+    background: #f1f3f4;
+    border: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .scale-table td {
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  .scale-table tr.scale-4 td { background: #fce8e6; }
+  .scale-table tr.scale-3 td { background: #e6f4ea; }
+  .scale-table tr.scale-2 td { background: #e8f0fe; }
+  .scale-table tr.scale-1 td { background: #f1f3f4; }
+  .scale-table td:first-child { font-weight: 700; text-align: center; white-space: nowrap; }
+
+  /* RESOURCES LINKS */
+  .resource-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.1s;
+  }
+  .resource-link:last-child { border-bottom: none; }
+  .resource-link:hover { color: var(--accent); }
+  .resource-link .icon { font-size: 1rem; flex-shrink: 0; }
+  .resource-link span { color: var(--muted); font-size: 0.8rem; margin-left: auto; white-space: nowrap; }
+
+  /* SCROLLSPY OFFSET */
+  [id] { scroll-margin-top: 70px; }
+
+  /* DETAILS/SUMMARY */
+  details { margin-bottom: 0.5rem; }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+    color: var(--accent);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  summary::before { content: "▶"; font-size: 0.7rem; transition: transform 0.2s; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details .detail-content { padding: 0.5rem 0 0.5rem 1.25rem; font-size: 0.875rem; color: var(--muted); }
+
+  /* MISC */
+  .spacer-section { height: 2rem; }
+  .note-box {
+    background: #fef7e0;
+    border-left: 4px solid var(--accent4);
+    border-radius: 0 8px 8px 0;
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+  .standard-label {
+    display: inline-block;
+    background: #f1f3f4;
+    border-radius: 4px;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-right: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+
+  /* MD Modal */
+  #md-modal { display:none; position:fixed; inset:0; z-index:9999;
+              background:rgba(0,0,0,0.48); padding:1.5rem 1rem;
+              overflow-y:auto; }
+  #md-modal-box { background:#fff; border-radius:14px; max-width:820px;
+                  margin:0 auto; padding:2rem 2.25rem 2.5rem;
+                  position:relative; min-height:120px; }
+  #md-close { position:absolute; top:0.875rem; right:1rem; background:none;
+              border:none; font-size:1.3rem; cursor:pointer; color:#5f6368;
+              line-height:1; padding:0.2rem 0.4rem; border-radius:6px; }
+  #md-close:hover { background:#f1f3f4; }
+  #md-file-label { font-size:0.72rem; text-transform:uppercase;
+                   letter-spacing:0.07em; color:#5f6368; margin-bottom:1rem; }
+  .md-body { font-size:0.9rem; line-height:1.7; color:#202124; }
+  .md-body h1 { font-size:1.35rem; font-weight:700; margin:1.25rem 0 0.5rem; }
+  .md-body h2 { font-size:1.1rem; font-weight:700; margin:1.1rem 0 0.4rem;
+                border-bottom:1px solid #dadce0; padding-bottom:0.3rem; }
+  .md-body h3 { font-size:0.97rem; font-weight:700; margin:0.875rem 0 0.3rem; }
+  .md-body p { margin-bottom:0.7rem; }
+  .md-body ul, .md-body ol { margin:0.4rem 0 0.7rem 1.4rem; }
+  .md-body li { margin-bottom:0.25rem; }
+  .md-body table { border-collapse:collapse; width:100%; margin:0.75rem 0; font-size:0.85rem; }
+  .md-body th { background:#f1f3f4; padding:0.45rem 0.7rem;
+                border:1px solid #dadce0; text-align:left; font-weight:600; }
+  .md-body td { padding:0.45rem 0.7rem; border:1px solid #dadce0; vertical-align:top; }
+  .md-body code { background:#f1f3f4; border-radius:4px;
+                  padding:0.1rem 0.35rem; font-size:0.85em; font-family:monospace; }
+  .md-body pre { background:#f8f9fa; border:1px solid #dadce0; border-radius:8px;
+                 padding:1rem; overflow-x:auto; margin:0.75rem 0; }
+  .md-body pre code { background:none; padding:0; }
+  .md-body blockquote { border-left:3px solid #dadce0; padding-left:1rem;
+                        color:#5f6368; margin:0.75rem 0; }
+  .md-body hr { border:none; border-top:1px solid #dadce0; margin:1rem 0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Robotics @ Nido</span>
+  <a href="#overview">Overview</a>
+  <a href="#unit1">Unit 1</a>
+  <a href="#unit2">Unit 2</a>
+  <a href="#unit3">Unit 3</a>
+  <a href="#standards">Standards</a>
+  <a href="#resources">Resources</a>
+  <span class="spacer"></span>
+  <a href="https://evanweinberg.com" target="_blank">evanweinberg.com ↗</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Robotics 2025–2026</h1>
+  <div class="subtitle">Course Guide for Nido de Aguilas International School</div>
+  <div class="meta">
+    <span>🧑‍🏫 Instructor: Evan Weinberg</span>
+    <span>📍 Room ST303</span>
+    <span>📅 Semester 1 · 16 Weeks · ~43 Class Days</span>
+    <span>🎓 High School Elective</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ============================================================ -->
+<!-- COURSE OVERVIEW -->
+<!-- ============================================================ -->
+<div class="spacer-section" id="overview"></div>
+<div class="section-title">Course Overview</div>
+
+<div class="card">
+  <h3>What this course is about</h3>
+  <p>
+    Robots are everywhere, often in ways we don't notice. This course demystifies them. Students learn that no matter how complex a device looks, it comes down to connecting wires between electronic parts, programming a controller to read sensor inputs, and using that logic to drive outputs — lights, motors, sounds — without human involvement.
+  </p>
+  <p>
+    Over 16 weeks students progress from blinking an LED to designing their own algorithmic measurement system. The through-line is always the same: define a real-world problem, build and wire a prototype, write code, iterate with feedback, and document the whole process.
+  </p>
+</div>
+
+<div class="grid-3">
+  <div class="card">
+    <h3>Hardware used</h3>
+    <p>BBC micro:bit (v2) with expansion board, Sphero RVR (first week), L298N motor driver, Adafruit Metro RP2040 (Unit 3), breadboards, LEDs, buttons, analog/digital sensors (IR, joystick, NeoPixels, servo, temperature, light, sound), and multimeters.</p>
+  </div>
+  <div class="card">
+    <h3>Software and tools</h3>
+    <p>MicroPython on the micro:bit via Mu Editor and the online editor at python.microbit.org. CircuitPython on the Metro. Desmos for graphing live sensor data. Gemini AI used throughout as a coding and iteration partner. Edpuzzle for video assignments. Custom EMW Robotics Simulator for virtual robot programming.</p>
+  </div>
+  <div class="card">
+    <h3>AI philosophy</h3>
+    <p>Generative AI (Gemini, Claude, ChatGPT) is treated as a legitimate learning tool. Students use it to generate starter code, explain concepts, iterate on prototypes, and get feedback on pitches. The course teaches students to direct AI with specific prompts and to critically evaluate what it produces — not just copy-paste.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Assessment philosophy</h3>
+  <p>
+    The course uses a proficiency scale (0–4) across six standards. There is no single final exam. Instead, students accumulate evidence across projects and activities throughout the semester. Each activity targets specific standards at specific levels. Some are quick mastery checks (Level 2), others are multi-day projects (Level 3), and advanced students find opportunities for Level 4 work.
+  </p>
+  <p>
+    The end-of-semester grade reflects overall achievement across all six standards. Students know which standards are being assessed for every activity. Missing work is addressed through additional learning opportunities rather than zeros alone.
+  </p>
+  <div class="tags">
+    <span class="tag">Communication</span>
+    <span class="tag">Prototypes &amp; Iterations</span>
+    <span class="tag">Hardware Inputs &amp; Outputs</span>
+    <span class="tag">Responding to Events</span>
+    <span class="tag">Functions &amp; Modular Code</span>
+    <span class="tag">Planning &amp; Algorithms</span>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Course pacing at a glance</h3>
+    <p>Semester 1 runs from late July through mid-December. Classes meet roughly three times per week in 75-minute blocks (Block H / Block G rotating schedule).</p>
+    <table class="lesson-table" style="margin-top:0.75rem;">
+      <thead><tr><th>Weeks</th><th>Unit</th><th>Key Hardware</th></tr></thead>
+      <tbody>
+        <tr><td>0–5</td><td>Unit 1: micro:bit &amp; Events</td><td>micro:bit, breadboard</td></tr>
+        <tr><td>6–10</td><td>Unit 2: Functions</td><td>micro:bit, motor driver</td></tr>
+        <tr><td>11–16</td><td>Unit 3: Metro &amp; Algorithms</td><td>Adafruit Metro RP2040</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>What students produce</h3>
+    <p>By the end of the semester each student has:</p>
+    <ul style="margin-top:0.5rem;padding-left:1.2rem;font-size:0.875rem;color:var(--muted);">
+      <li style="margin-bottom:0.3rem;">A micro:bit project (Project 1 "Bit by Bit") with wiring, code, and iteration documentation in Google Slides</li>
+      <li style="margin-bottom:0.3rem;">A motor driver project and design/status report</li>
+      <li style="margin-bottom:0.3rem;">A virtual robot programming task with a functions design report</li>
+      <li style="margin-bottom:0.3rem;">An algorithm design project using the Adafruit Metro</li>
+      <li style="margin-bottom:0.3rem;">A hackathon pitch with a final evidence submission (student chooses which standards to demonstrate)</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- UNIT 1 -->
+<!-- ============================================================ -->
+<div class="spacer-section" id="unit1"></div>
+<div class="unit-header u1">
+  <h2>Unit 1 — micro:bit and Events</h2>
+  <div class="unit-meta">Weeks 0–5 · Days 1–15 · approximately 15 class sessions</div>
+  <div class="unit-desc">Students go from zero programming experience to having a working, wired, event-driven micro:bit device they designed and built themselves. The unit establishes the foundational framing for the entire course: inputs trigger events, processors respond, outputs react — without human involvement.</div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Learning goals</h3>
+    <p>By the end of Unit 1 students can:</p>
+    <ul style="margin-top:0.5rem;padding-left:1.2rem;font-size:0.875rem;color:var(--muted);">
+      <li style="margin-bottom:0.3rem;">Define what a robot is (reads inputs, controls outputs, without human involvement)</li>
+      <li style="margin-bottom:0.3rem;">Identify and explain events in a MicroPython program</li>
+      <li style="margin-bottom:0.3rem;">Build basic electronic circuits (LED, motor, button, breadboard)</li>
+      <li style="margin-bottom:0.3rem;">Read analog and digital sensor data and graph it in Desmos</li>
+      <li style="margin-bottom:0.3rem;">Wire external sensors and outputs (IR sensor, NeoPixels, servo, joystick) to the micro:bit</li>
+      <li style="margin-bottom:0.3rem;">Use AI (Gemini) to generate, iterate on, and explain code</li>
+      <li style="margin-bottom:0.3rem;">Document an iterative design process across multiple class days</li>
+    </ul>
+    <div class="tags" style="margin-top:0.75rem;">
+      <span class="tag">Communication L2</span>
+      <span class="tag">Iterations L2</span>
+      <span class="tag">Hardware I/O L2–L3</span>
+      <span class="tag">Events L2–L3</span>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Scaffolding approach</h3>
+    <p>The unit opens with the Sphero RVR challenge — a fun, low-stakes way to surface the idea of command sequences (effectively: algorithms) before the word "algorithm" is introduced. Students immediately see that a program runs in sequence and doesn't adapt to the environment.</p>
+    <p>The micro:bit is then introduced as a device students can hold and program on the same day. Events are introduced through a scavenger hunt: find five events built into the micro:bit without being told what to look for. Circuits start dead-simple (light one LED) and build toward breadboard circuits and finally external sensors.</p>
+    <p>The L2 iteration task with Gemini AI scaffolds the design process explicitly: start with a prompt template, generate code, test it, explain what doesn't work, ask Gemini to improve it. This is repeated across three documented iterations before the full Project 1.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Day-by-day lesson sequence</h3>
+
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D1</span><span class="lc-title">Robotics Intro</span><div class="tags"><span class="tag blue">Iterations</span></div><a class="lc-res" href="Unit 1 - micro_bit and Events/slides/U1D1-Robotics-Intro.html" >U1D1 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>The lesson opens with the "what is a robot?" question through a set of images — factory arm, Roomba, self-driving car, vending machine. The class lands on a working definition: reads inputs, controls outputs, without human involvement. The bulk of class is the RVR coding challenge: teams write movement commands on paper in Python-tuple format (e.g. <code>("W", 1.5)</code> for "forward 1.5 seconds") and watch the robot execute them with no mid-run adjustments allowed.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The challenge is designed to fail productively. Most teams over- or under-estimate timing, or forget a turn — that's the point. The robot doesn't interpret intent, it follows commands exactly. The debrief question "what would you change?" is the seed of the Iterations standard. There's also a "neat vs. messy / looks good vs. works well" discussion that frames the course's quality philosophy from day one.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D2</span><span class="lc-title">RVR Debrief &amp; micro:bit Intro</span><div class="tags"><span class="tag gray">All standards introduced</span></div><a class="lc-res" href="Unit 1 - micro_bit and Events/slides/U1D2-RVR-Review-microbit-Intro.html" >U1D2 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Brief survey, then RVR debrief connecting team results back to the robot definition. The Etch-a-Sketch analogy: the teacher draws a circle manually, then asks what motor commands a robot would need to do the same. Proficiency scales introduced. Students get their micro:bits, connect via USB, and open python.microbit.org. Mu Editor download shared.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The Etch-a-Sketch analogy is worth dwelling on. A person drawing a circle uses continuous feedback and can adjust mid-stroke; a robot following commands has to get each step right in advance. This is why precision matters and why iteration exists. Keep the proficiency scale intro light here — the key point is that 3.0 is the goal and 2.0 is the foundation.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D3</span><span class="lc-title">micro:bit Events Intro</span><div class="tags"><span class="tag blue">Events</span></div><a class="lc-res" href="https://docs.google.com/document/d/1yIwTehqa5jxlmq5zZABBEjhmHrJ1vXfLXSSCRUvbE4s/edit" target="_blank">Events Catalog</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Scavenger hunt: students find 5 built-in micro:bit events on their own using the online simulator, then record them in the W1-3 Events Catalog Google Doc — no hints given. Events found typically include button presses, shake, tilt, microphone level, and temperature. At the end of class, students upload their first hex file from the online editor.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>Events are framed here as "when/if [something happens]" rather than with a technical definition. Starting from "the micro:bit knows when this occurs" is more accessible than event-driven programming theory. The hex file upload is the first time students experience the compile-flash-test loop — watch for confusion about how to get the file onto the board, as it trips up a surprising number of students.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D4</span><span class="lc-title">Circuit Building Part 1</span><div class="tags"><span class="tag blue">Hardware</span><span class="tag blue">Events</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>L2 Events warm-up: given a few lines of code, students identify and circle the events. Then breadboard intro — row/column connections, internal structure. Build circuits 1–3: light an LED from a 3V battery, spin a motor, use a button to control a motor. Each circuit documented in the W1-5 Circuit Building Template with photos.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>Students often don't believe breadboard row connections until they see the internal diagram — worth showing a disassembled one. LEDs are polarized and backwards wiring is a common first error; it's a useful early debugging moment. The warm-up events analysis doubles as an informal check that D3 understanding stuck before moving into hardware.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D5</span><span class="lc-title">Circuits Part 2 &amp; Sensor Data</span><div class="tags"><span class="tag blue">Hardware</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1ZtkdlHwLIHN9_cTGe-TCkRcPRAaZjmFgQAjKmlrhUqc/edit" target="_blank">W2-1 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Complete circuits 4–6: breadboard LED with resistor, button-controlled LED, micro:bit-controlled LED via Pin 0. Then the sensor data lab: provided code reads the light sensor and button state and pipes values into a Desmos graph in real time. Students watch analog (smooth curve) and digital (step function) data appear on the same axes. The Desmos screenshot is the L1.5 submission — the first assessed piece of the course.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The live Desmos graph is the clearest possible illustration of the analog/digital distinction — students see it rather than hear a definition. The lab requires the micro:bit connected via USB with the REPL open, which is a new connection mode. The W2-1 slides walk through it carefully, but plan for some students to need help with the USB setup.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D6</span><span class="lc-title">Analog vs. Digital &amp; Project Brainstorming</span><div class="tags"><span class="tag blue">Hardware</span><span class="tag blue">Iterations</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1m7t14q9Mo4NHyfNwOyBmdCLV1QSH_4-psiHgCKjWFpg/edit" target="_blank">U1D6 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Warm-up formalizes D5: read the temperature sensor and simulate 24-hour Santiago data in Desmos. The analog/digital contrast is named explicitly. Then the unit's first major creative step: students use a Gemini prompt template to brainstorm a real-world problem and generate AI starter code. The template tells students exactly what context to give Gemini — grade level, platform, code format — so the output is actually usable.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The Gemini prompt template is not optional scaffolding. Without it, students either get code that doesn't run in MicroPython or responses too vague to use. Watch the brainstorm closely: the constraint "something you could build with sensors the micro:bit already has" is important. Students often propose ideas requiring GPS or a camera. Redirect toward light, temperature, sound, buttons, and the accelerometer.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D7</span><span class="lc-title">L2 Iterations with AI (due)</span><div class="tags"><span class="tag blue">Iterations L2</span><span class="tag blue">Communication L2</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/15RIf5c7ig8SknP01EmjMc7gyTXMEgWWWo-LPNZyF12Q/edit" target="_blank">Iteration Example</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Full work day. Students iterate starter code through at least 3 versions using the W3-2 micro:bit Prototyping Template. Each iteration documents the current code, what was tested, what didn't work, the exact Gemini prompt used, and the new code. L2 Iterations task due end of class.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The L2 standard isn't just "show three drafts" — it requires explaining what changed and why. The teacher's own iteration example (W3-3) is worth walking through at the start of class: it shows the teacher's code didn't work first either, and that articulating a problem clearly to Gemini produces a better result. The parallel between precise prompting and precise debugging is worth naming explicitly.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D8</span><span class="lc-title">Multimeter &amp; Breadboard Deep Dive</span><div class="tags"><span class="tag blue">Hardware</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1e6JLvCck0ngVa3eHv7pvfMhB2oNRoWFt_bUR5HAn5BQ/edit" target="_blank">U1D8 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Introduce the micro:bit expansion board. Systematic multimeter exploration guided by an 11-step worksheet: use the continuity setting to trace which breadboard columns connect to which GPIO pins, then the voltage setting to measure battery vs. USB power and Pin 0 HIGH vs. LOW state.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>This is a genuine engineering skills lesson. The key shift: students stop guessing whether a connection works and start measuring it. Using the multimeter as a debugging tool — not just a measurement instrument — changes how students troubleshoot circuits for the rest of the course. The worksheet keeps the exploration systematic rather than random.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D9</span><span class="lc-title">Breadboard Tasks Continued</span><div class="tags"><span class="tag blue">Hardware</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1uVkb_-9r0gPD_zYoO32S77birgaPtleoCZjdJdFbwYo/edit" target="_blank">W4-1 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Using the expansion board from D8: wire an external LED to Pin 0 via breadboard (resistor required). Write code to turn it on and off with button presses. Explore the micro:bit schematic to understand which GPIO pins support which functions. Voltage readings with battery pack vs. USB.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>A key micro:bit detail surfaces here: Pin 0 must be declared as output in code even when the circuit is correctly wired. The physical connection alone isn't enough. Students who skip this step have a working circuit that does nothing — a useful, low-stakes debugging moment before Project 1.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D10</span><span class="lc-title">Events Code Analysis (L3)</span><div class="tags"><span class="tag blue">Events L3</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Warm-up: given a wiring diagram and a joystick module, wire the joystick to the expansion board as an analog input. Main task: L3 events analysis — students receive a micro:bit program more complex than anything they've written, with multiple concurrent event handlers, and must identify each one and explain exactly what it does and when it fires.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The jump from D3 (find events in simple code) to this L3 task is significant. The L3 program includes button combinations, accelerometer conditions, and possibly a background loop — multiple concurrent structures. Students who struggle often conflate "event handler" with "function." Remind them: this task is as much a code reading problem as a coding one.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D11</span><span class="lc-title">External Circuits</span><div class="tags"><span class="tag blue">Hardware L3</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1cLoy09-LTTeRk8ChdMoCMYzeYkbiXdTW8ikuBgW2O28/edit" target="_blank">W5-1 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Systematically work through four external components: joystick (analog input), IR sensor (digital input), NeoPixel strip (digital output), servo motor (PWM output). Sample code provided for each. Students wire, run, and modify each to confirm they understand the behavior. Design task at the end: use at least one component in a novel way.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>This lesson is intentionally broad rather than deep. The goal is that students can make informed hardware choices for Project 1, not that they master every component. Power supply considerations come up here — some components need 5V, others work at 3.3V. The NeoPixel strip requires correct polarity on all three pins. The servo requires thinking in angles, not on/off.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D12</span><span class="lc-title">Project 1 Launch: Bit by Bit</span><div class="tags"><span class="tag blue">Wiring L3</span><span class="tag blue">Iterations L3</span><span class="tag blue">Events L3</span><span class="tag blue">Communication</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Event handler review warm-up. Project 1 introduced: design a micro:bit device using external components to solve a real problem, solo or in pairs. Students open the Google Slides template — it requires wiring diagrams, photos of each build version, Gemini interaction logs, and event documentation — and write their initial problem description and requirements.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The critical teacher intervention: redirecting vague ideas to specific, achievable ones. "A smart home" needs to become "a lamp that turns on when the room gets dark." Documentation must start today — photos taken each day, not reconstructed at the end. All three standards (Wiring, Iterations, Events) must be evidenced in the slides; students can't rely on just one.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D13–D15</span><span class="lc-title">Project 1 Work Days</span><div class="tags"><span class="tag blue">Wiring L3</span><span class="tag blue">Iterations L3</span><span class="tag blue">Events L3</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/15spidR0-qSLZfnkZDyepc0W4tAEr7-KsK4FVloEwgFM/edit" target="_blank">Exemplar L3 Doc</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Three full build days. Students design, wire, code, debug, iterate, and document. Each day ends with a reflection slide added to the presentation. Teacher circulates for the observational wiring assessment.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The most common failure mode: students get something working on Day 1 and stop genuinely iterating. Push them — what breaks this? What could go wrong for a different user? How would you improve it with another week? The iteration requirement is about showing a design process, not a progression of drafts. Do wiring observations before the final day, since students sometimes disassemble their circuit at the end.</p></div>
+  </div>
+</div>
+</div>
+
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Unit 1 assessments</h3>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-sub">SUB</div>
+      <div class="assignment-info">
+        <h4>W1-3: micro:bit Events Catalog</h4>
+        <p>Google Doc listing the events students found in the built-in scavenger hunt. First Schoology submission of the course.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-sub">SUB</div>
+      <div class="assignment-info">
+        <h4>W1-5: micro:bit Code Submit (hex file)</h4>
+        <p>First uploaded MicroPython hex file from the online editor. Shows students can write, download, and submit code.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l2">L2</div>
+      <div class="assignment-info">
+        <h4>L2 – Responding to Events (Warmup)</h4>
+        <p>Given a micro:bit program, identify the events. Used as a warm-up check early in the unit.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l2">L2</div>
+      <div class="assignment-info">
+        <h4>L1.5 – Hardware – Desmos Data Screenshot</h4>
+        <p>Submit screenshots of Desmos graphs from analog and digital sensor data collected with the micro:bit.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l2">L2</div>
+      <div class="assignment-info">
+        <h4>W2-3: L2 – Hardware Inputs/Outputs – micro:bit Sensors (Circuit Building Template)</h4>
+        <p>Template with photos of all six circuits completed in class (LED, motor, breadboard, micro:bit-controlled LED).</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l2">L2</div>
+      <div class="assignment-info">
+        <h4>W3-2: micro:bit Prototyping Template (L2 Iterations)</h4>
+        <p>Three-iteration AI-assisted design process. Students document code changes and Gemini prompts at each stage. This is the major L2 scaffolded iteration task before Project 1.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l3">L3</div>
+      <div class="assignment-info">
+        <h4>L3 – Responding to Events – micro:bit Code Analysis</h4>
+        <p>Students receive a moderately complex micro:bit program and must identify and explain all event handlers in detail.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-obs">OBS</div>
+      <div class="assignment-info">
+        <h4>L3 – Hardware Inputs/Outputs – Building micro:bit Circuits (Observational)</h4>
+        <p>Teacher observes wiring during the external circuits class (Week 5). Grade based on demonstrated wiring competence.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l3">L3</div>
+      <div class="assignment-info">
+        <h4>L3 – Wiring, Hardware, Events – micro:bit Project (Project 1: Bit by Bit)</h4>
+        <p>Main project submission. Google Slides with problem description, wiring diagrams, photos, iteration evidence across 3+ days, and event documentation. Assesses Wiring, Iterations, Events, and Communication.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Unit 1 file inventory</h3>
+    <a class="resource-link" href="Unit 1 - micro_bit and Events/slides/U1D1-Robotics-Intro.html"><span class="icon">🌐</span> U1D1 – Robotics Intro <span>slide viewer</span></a>
+    <a class="resource-link" href="Unit 1 - micro_bit and Events/slides/U1D2-RVR-Review-microbit-Intro.html"><span class="icon">🌐</span> U1D2 – RVR Review &amp; micro:bit Intro <span>slide viewer</span></a>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U1D3 – micro:bit Intro.pptx <span>Day 3</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U1D4 – Circuit Building &amp; micro:bit.pptx <span>Day 4</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U1D5 – Circuits Continued, Sensor Data.pptx <span>Day 5</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U1D6 – Analog &amp; Digital Sensors.pptx <span>Day 6</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U1D8 – micro:bit Circuits.pptx <span>Day 8</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U1D9 – Electronics Review, External Buttons.pptx <span>Day 9</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U1D10 – External Circuits Task.pptx <span>Day 11</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U1D11 – Project 1: Bit by Bit.pptx <span>Day 12</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> W1-5 – Circuit Building Template.pptx <span>student template</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> W3-2 – micro:bit Product Iteration Template.pptx <span>student template</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> W3-3 – Iteration Example + Rubric.pptx <span>exemplar</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> Project 1 Template.pptx <span>student template</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> 3.0 Exemplar – micro:bit Project.pptx <span>student exemplar</span></span>
+    <a class="resource-link" href="Unit 1 - micro_bit and Events/L2 - Responding to Events - micro_bit events.md"><span class="icon">📄</span> L2 – Responding to Events.docx <span>student handout</span></a>
+    <a class="resource-link" href="Unit 1 - micro_bit and Events/L3 - Responding to Events - micro_bit code analysis.md"><span class="icon">📄</span> L3 – Responding to Events Code Analysis.docx <span>student handout</span></a>
+    <a class="resource-link" href="Unit 1 - micro_bit and Events/W1-3 - micro_bit events catalog.md"><span class="icon">📄</span> W1-3 – micro:bit Events Catalog.docx <span>student handout</span></a>
+    <a class="resource-link" href="Unit 1 - micro_bit and Events/W0-1 - RVR Challenge - Team Code.md"><span class="icon">📄</span> W0-1 – RVR Challenge – Team Code.docx <span>student handout</span></a>
+    <a class="resource-link" href="https://docs.google.com/presentation/d/15spidR0-qSLZfnkZDyepc0W4tAEr7-KsK4FVloEwgFM/edit" target="_blank"><span class="icon">🔗</span> Exemplar L3 Document (Google Slides) <span>online</span></a>
+  </div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- UNIT 2 -->
+<!-- ============================================================ -->
+<div class="spacer-section" id="unit2"></div>
+<div class="unit-header u2">
+  <h2>Unit 2 — Functions and Modular Code</h2>
+  <div class="unit-meta">Weeks 6–10 · Days 16–27 · approximately 12 class sessions</div>
+  <div class="unit-desc">Students learn to break complex programs into reusable, testable functions. The unit moves through three escalating contexts: functions on micro:bit with Mu Editor, motor driver control (wiring a new piece of hardware and writing functions to drive it), and a custom-built virtual robot simulator where students implement a task using well-structured functions. Communication (design reports and pitches) is formally introduced this unit.</div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Learning goals</h3>
+    <p>By the end of Unit 2 students can:</p>
+    <ul style="margin-top:0.5rem;padding-left:1.2rem;font-size:0.875rem;color:var(--muted);">
+      <li style="margin-bottom:0.3rem;">Identify function inputs (parameters) and outputs (return values) in Python code</li>
+      <li style="margin-bottom:0.3rem;">Call functions with correct syntax and a variety of parameter types</li>
+      <li style="margin-bottom:0.3rem;">Write and test functions with no parameters, parameters only, and parameters + return values</li>
+      <li style="margin-bottom:0.3rem;">Decompose a larger project into function-sized pieces</li>
+      <li style="margin-bottom:0.3rem;">Wire and control an L298N motor driver using a micro:bit</li>
+      <li style="margin-bottom:0.3rem;">Give a 1-minute pitch explaining a problem and current prototype state</li>
+      <li style="margin-bottom:0.3rem;">Write a design/status report documenting their current solution</li>
+      <li style="margin-bottom:0.3rem;">Program the virtual robot simulator using task functions</li>
+    </ul>
+    <div class="tags" style="margin-top:0.75rem;">
+      <span class="tag green">Functions L2–L3</span>
+      <span class="tag green">Communication L2–L3</span>
+      <span class="tag green">Hardware L3</span>
+      <span class="tag green">Iterations L3</span>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Scaffolding approach</h3>
+    <p>The unit opens with pitches — students give a 1-minute verbal status report on Project 1 to Gemini, which provides critical feedback. This introduces the Communication standard explicitly and connects it to work students already did.</p>
+    <p>Functions are introduced through Edpuzzle videos and a Gemini conversation using a prompt template. Then Mu Editor (desktop Python) is used to write and test functions in isolation before putting them on the micro:bit. This is intentional: decoupling the hardware from the concept prevents students from conflating "the micro:bit is broken" with "my function is broken."</p>
+    <p>The motor driver wiring task is introduced cold — students get hardware and a website guide, and use Gemini to navigate extending the code. The virtual robot simulator then gives a completely controlled environment for demonstrating function design.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Day-by-day lesson sequence</h3>
+
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D16</span><span class="lc-title">Pitches &amp; Design Report Intro</span><div class="tags"><span class="tag green">Communication L2</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1I2MGJ5cy6q--K0Lxb4dIWO2ekcTTmWkFLdLJTrK7-Lo/edit" target="_blank">U2D1 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Class sets up trays, installs Mu Editor. Main activity: 1-minute pitch to Gemini. The slide shows the exact prompt — students paste the L2 Communication criteria into Gemini, then type their verbal pitch and ask for critical feedback. Design report template (5-slide format) introduced for Project 1 status documentation.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>This is one of the more creative AI uses in the course. Students aren't asking Gemini to write their pitch — they're asking it to evaluate their pitch against a specific standard. The feedback tends to be sharp: Gemini notices when a pitch is all future plans and no current-state description. A design report talks about what exists now, not what the student hopes to build. Most students are surprised by how direct the feedback is.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D17</span><span class="lc-title">Edpuzzle: Reorganizing Code with Functions</span><div class="tags"><span class="tag green">Functions L1.5–L2</span></div><a class="lc-res" href="https://edpuzzle.com/assignments/68d52cb0b0eafcdd6d28bd0e/watch" target="_blank">Edpuzzle</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Two Edpuzzle video assignments on functions with embedded questions. Videos cover all three function types: no parameters, parameters only, parameters with return values. A Gemini conversation on function inputs/outputs follows the videos. L1.5 grade based on completion.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>Edpuzzle lets the teacher embed questions at key moments in the video — "what will this function return?" — without a lecture. The Gemini conversation immediately after matters: it forces students to articulate what they just watched before they've had a chance to forget it. Keep the conversation focused on identification: given this function definition, what are the inputs and what does it return?</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D18</span><span class="lc-title">Gemini Chat: Function Inputs/Outputs</span><div class="tags"><span class="tag green">Functions L2</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>L2 task: students use a provided prompt template for a structured Gemini conversation — identifying parameter types, return values, and predicting output from function calls. Full transcript submitted to Schoology.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>This task exists because reading a function (understanding what it needs and what it gives back) is harder to assess than writing one. The Gemini transcript serves as evidence of student thinking in a way that's harder to fake than a worksheet. The L2 Functions standard is specifically about identification and calling syntax, not writing — this isolates that skill.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D19</span><span class="lc-title">Modularizing Code on micro:bit (L3)</span><div class="tags"><span class="tag green">Functions L3</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Students watch a pre-recorded video walkthrough of modularizing a micro:bit program. Starter code is provided in the online editor; students follow along to produce a version with all three function types. Screencast submitted as L3 evidence.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The video format is deliberate — this is the most complex single coding task in Unit 2 and students need to be able to pause and rewind. The screencast proves they worked through it rather than just watched. The "before and after" visual — a long messy program vs. the same logic organized into named functions — is the moment the concept clicks for most students.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D20–D21</span><span class="lc-title">Mu Editor &amp; Functions with micro:bit Data</span><div class="tags"><span class="tag green">Functions</span><span class="tag green">Hardware</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1gMy6qvy5hVD4oVmvz-mG_9f4ZzzFLqS9jPjY_lV959M/edit" target="_blank">U2D5 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>D20: open Mu Editor in Python 3 mode (not micro:bit mode). Run a provided function file in the REPL. Predict outputs before running, fill in parameter/return value tables. D21: switch Mu to micro:bit mode, flash sensor code, watch live data in the Plotter, write a function that processes sensor readings and returns something meaningful.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The D20 Python 3 session fully decouples functions from the micro:bit hardware — students can test a function in seconds with no flashing required. This tightens the feedback loop and helps isolate function logic from hardware errors. D21 applies that understanding back to the micro:bit. The transition should feel like a bridge, not a jump.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D22</span><span class="lc-title">Motor Driver Day 1 — Wiring</span><div class="tags"><span class="tag green">Hardware L3</span><span class="tag green">Functions</span></div><a class="lc-res" href="https://evanweinberg.com/robotics/motor-driver/" target="_blank">Motor Driver Website</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Receive the L298N motor driver and two DC motors. Follow the teacher's motor driver website to wire: L298N to the 9V battery pack, L298N to micro:bit control pins, motors to L298N outputs. Write and flash code to spin one motor.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The motor driver is the most complex wiring task students have seen. The teacher's website uses the exact components and pin numbers students have — not a generic tutorial. Common confusion: the enable pins (ENA/ENB) control speed via PWM while the input pins (IN1–IN4) control direction. Keeping those two roles distinct is key. The observational wiring assessment fits naturally here.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D23</span><span class="lc-title">Motor Driver Day 2 — AI Extension</span><div class="tags"><span class="tag green">Functions L3</span><span class="tag green">Communication L2</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1cPHwVTnmKzVDD2O8nzBNPJ2U7Z_ZvCw-MiN4XYomncE/edit" target="_blank">U2D9 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Use Gemini 2.5 Pro with a prompt that includes the existing motor code as context. Ask Gemini to extend it: add a second motor, add joystick control. Design/status report assignment introduced — L2 Communication for the motor driver project.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The choice of Gemini 2.5 Pro is called out explicitly on the slides — this is a teachable moment about model selection. The key skill here: pasting your existing code into the prompt produces dramatically better results than asking from scratch. The design/status report reinforces this: students must describe current state (one motor working) and what changed (added second motor, joystick), mirroring the Iterations standard.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D24–D25</span><span class="lc-title">EMW Robotics Simulator</span><div class="tags"><span class="tag green">Functions L3</span><span class="tag green">Communication L3–L4</span></div><a class="lc-res" href="https://evanweinberg.com/robotics/simulator/" target="_blank">Robot Simulator</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>D24: intro to the custom simulator. Warm-up: write commands to pop a balloon. Build task functions that break the simulator challenge into manageable pieces. D25: continue function development, work on the functions design report that explains the structure choices made.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The simulator exists because Project 1 varied too much student-to-student for a standardized functions assessment. Every student starts with identical conditions here. The design report — "why did you organize the functions this way?" — targets the Communication standard at L3: explaining a design decision, not just describing what exists. Students who can't explain their choices haven't really internalized the function design.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D26–D27</span><span class="lc-title">Motor Driver Assessment &amp; Simulator Report Due</span><div class="tags"><span class="tag green">Hardware L3</span><span class="tag green">Functions L3–L4</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Catch-up opportunity for the observational motor driver wiring assessment. Robot simulator design report and functions submission due by end of D27.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>Unit close-out. Students who haven't submitted L3 functions work or their L2 design report have until the end of D27. Use D26 for circulation and any remaining wiring observations that haven't been completed yet.</p></div>
+  </div>
+</div>
+</div>
+
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Unit 2 assessments</h3>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l2">L2</div>
+      <div class="assignment-info">
+        <h4>L2 – Communication – Pitch and AI Feedback</h4>
+        <p>Paste full Gemini chat transcript from the pitch feedback exercise. First formal Communication assessment.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l2">L2</div>
+      <div class="assignment-info">
+        <h4>L1.5 – Reorganizing Code with Functions (Edpuzzle)</h4>
+        <p>Two Edpuzzle video assignments. Completion and demonstrated understanding of function input/output concepts.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l2">L2</div>
+      <div class="assignment-info">
+        <h4>L2 – W6-4: Gemini Practice with Function Inputs/Outputs</h4>
+        <p>Structured Gemini conversation showing identification and use of function parameters and return values.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l2">L2</div>
+      <div class="assignment-info">
+        <h4>L2 – Function Calling and Parameters</h4>
+        <p>Quick activity predicting REPL output and filling parameter tables. Done in Mu Editor at the start of class.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l3">L3</div>
+      <div class="assignment-info">
+        <h4>L3 – Functions &amp; Modular Code – Function Writing</h4>
+        <p>Screencast submission showing the full process of modularizing micro:bit code into functions of all three types. A second optional screencast shows students applying this to their own Project 1 code.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l2">L2</div>
+      <div class="assignment-info">
+        <h4>L2 – Communication – Motor Driver Project Design/Status Report</h4>
+        <p>5-slide status report on the motor driver project: problem overview, current state, wiring/code screenshots, AI use, next steps.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-obs">OBS</div>
+      <div class="assignment-info">
+        <h4>L3 – Hardware, Inputs, Outputs – Motor Driver Wiring (Observational)</h4>
+        <p>Teacher observes wiring of motor driver to micro:bit during class. Assesses correct circuit assembly and troubleshooting.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l4">L4</div>
+      <div class="assignment-info">
+        <h4>L4 – Functions &amp; Design Report – Virtual Robot Task</h4>
+        <p>Combined Functions L3–L4 and Communication L3–L4 assessment. Students submit the virtual robot task functions and a design report explaining how they structured their code.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Unit 2 file inventory</h3>
+    <a class="resource-link" href="https://docs.google.com/presentation/d/1I2MGJ5cy6q--K0Lxb4dIWO2ekcTTmWkFLdLJTrK7-Lo/edit" target="_blank"><span class="icon">🔗</span> U2D1 – Pitches, Design Report (Google Slides) <span>online</span></a>
+    <a class="resource-link" href="https://docs.google.com/presentation/d/1gMy6qvy5hVD4oVmvz-mG_9f4ZzzFLqS9jPjY_lV959M/edit" target="_blank"><span class="icon">🔗</span> U2D5 – micro:bit, Mu, and Functions (Google Slides) <span>online</span></a>
+    <a class="resource-link" href="https://docs.google.com/presentation/d/1AdcPyYp3ZSSZRQbOymWmE90I7WLEpRHPVIv240gGdNI/edit" target="_blank"><span class="icon">🔗</span> U2D6 – Writing Functions &amp; micro:bit Data (Google Slides) <span>online</span></a>
+    <a class="resource-link" href="https://docs.google.com/presentation/d/1cPHwVTnmKzVDD2O8nzBNPJ2U7Z_ZvCw-MiN4XYomncE/edit" target="_blank"><span class="icon">🔗</span> U2D9 – Motor Driver: AI, 2nd Motor, Joystick (Google Slides) <span>online</span></a>
+    <a class="resource-link" href="https://evanweinberg.com/robotics/motor-driver/" target="_blank"><span class="icon">🌐</span> Motor Driver Information Website <span>online</span></a>
+    <a class="resource-link" href="https://evanweinberg.com/robotics/simulator/" target="_blank"><span class="icon">🌐</span> EMW Robotics Simulator <span>online</span></a>
+    <a class="resource-link" href="https://docs.google.com/document/d/1AGdhjNZmyOkE3zSQ-u9uGKAzzRz8jGlYO8FUL4Y9-uU/edit" target="_blank"><span class="icon">🔗</span> Robot Simulator Description (Google Doc) <span>online</span></a>
+    <a class="resource-link" href="https://edpuzzle.com/assignments/68d52cb0b0eafcdd6d28bd0e/watch" target="_blank"><span class="icon">🔗</span> Edpuzzle: Functions Videos <span>online</span></a>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U2D10 – Robot Simulator Intro.pptx <span>local file</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> L2 – Design Report – Motor Driver Project.pptx <span>student template</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> L4 – Functions and Design Report – Virtual Robot.pptx <span>student template</span></span>
+    <a class="resource-link" href="Unit 2 - Functions/L2 - Functions Calling and Testing_.md"><span class="icon">📄</span> L2 – Functions Calling and Testing.docx <span>student handout</span></a>
+    <a class="resource-link" href="Unit 2 - Functions/L3 - Functions & Modular Code - Function Writing.md"><span class="icon">📄</span> L3 – Functions &amp; Modular Code – Function Writing.docx <span>student handout</span></a>
+    <a class="resource-link" href="Unit 2 - Functions/L4 - Functions - Virtual Robot Programming.md"><span class="icon">📄</span> L4 – Functions – Virtual Robot Programming.docx <span>student handout</span></a>
+    <a class="resource-link" href="Unit 2 - Functions/W6-4 - Function Input_Output Prompt.md"><span class="icon">📄</span> W6-4 – Function Input/Output Prompt.docx <span>student handout</span></a>
+    <a class="resource-link" href="Unit 2 - Functions/W10-4 - Virtual Robot Simulator - Exploration.md"><span class="icon">📄</span> W10-4 – Virtual Robot Simulator Exploration.docx <span>student handout</span></a>
+    <span class="resource-link resource-local"><span class="icon">💻</span> microbit_data.py <span>starter code</span></span>
+    <span class="resource-link resource-local"><span class="icon">💻</span> u2d5_functions.py <span>starter code</span></span>
+  </div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- UNIT 3 -->
+<!-- ============================================================ -->
+<div class="spacer-section" id="unit3"></div>
+<div class="unit-header u3">
+  <h2>Unit 3 — Metro and Algorithms</h2>
+  <div class="unit-meta">Weeks 11–16 · Days 28–43 · approximately 16 class sessions</div>
+  <div class="unit-desc">A new hardware platform (Adafruit Metro RP2040 with CircuitPython) and a new conceptual focus: algorithms. Students learn to design solutions before coding them — through flowcharts and pseudocode — and apply that thinking to a final design challenge where they build a Metro-based system that measures or classifies something in the real world. The unit culminates in a hackathon and final assessment week.</div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Learning goals</h3>
+    <p>By the end of Unit 3 students can:</p>
+    <ul style="margin-top:0.5rem;padding-left:1.2rem;font-size:0.875rem;color:var(--muted);">
+      <li style="margin-bottom:0.3rem;">Install CircuitPython on the Adafruit Metro RP2040 and run basic programs</li>
+      <li style="margin-bottom:0.3rem;">Wire sensors and motors to the Metro and adapt example code</li>
+      <li style="margin-bottom:0.3rem;">Explain what an algorithm is and identify examples (Towers of Hanoi, self-driving car logic)</li>
+      <li style="margin-bottom:0.3rem;">Draw flowcharts using standard symbols and notation</li>
+      <li style="margin-bottom:0.3rem;">Write pseudocode for a multi-step program</li>
+      <li style="margin-bottom:0.3rem;">Use AI (Gemini) to develop and refine an algorithm, then document the design with flowcharts</li>
+      <li style="margin-bottom:0.3rem;">Design and build an original Metro-based algorithm design project</li>
+      <li style="margin-bottom:0.3rem;">Pitch a project at a hackathon and submit final evidence for chosen standards</li>
+    </ul>
+    <div class="tags" style="margin-top:0.75rem;">
+      <span class="tag red">Algorithms L2–L4</span>
+      <span class="tag red">Hardware L3</span>
+      <span class="tag red">Iterations L3</span>
+      <span class="tag red">Communication L4</span>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Scaffolding approach</h3>
+    <p>The transition to the Metro is managed carefully. Students set up CircuitPython on Day 1 of the unit following a guide, and the teacher's custom demo website (evanweinberg.com/robotics/tetrix_metro/) walks them through motor control step by step. The familiar concept of motor control from the motor driver task gives them an anchor.</p>
+    <p>Algorithms are introduced concretely with Towers of Hanoi and a self-driving car prompt — both force students to articulate step-by-step decision logic before any code is written. The NYT "Are You Smarter than AI?" puzzle is used as a warmup to surface the idea that intelligence is often about following systematic rules.</p>
+    <p>The algorithm design project uses a Gemini conversation scaffold: a prompt template guides students through defining a measurement challenge, developing the algorithm interactively with AI, and then drawing a flowchart that the AI validates. The conversation summary becomes the documentation artifact.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Day-by-day lesson sequence</h3>
+
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D28</span><span class="lc-title">Intro to Metro RP2040</span><div class="tags"><span class="tag red">Hardware</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1m1P4Ksb9ExFCfN9cBFm5wCj08oUbKe8CT4x9l9LKwJU/edit" target="_blank">W11-1 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Download the CircuitPython UF2 file. Put the Metro in bootloader mode (hold BOOT, press RESET). Drag-drop the UF2 onto the CIRCUITPY drive. First program: blink the onboard LED. Compare Metro vs. micro:bit — pin layout, voltage levels, connection method, programming environment (CircuitPython vs. MicroPython).</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The CircuitPython installation is usually the most technically bumpy day of Unit 3. Have the guide open. Most students succeed on the first try; the ones who don't usually need to hold BOOT longer or try a different USB cable. Linger on the comparison — students need to understand this is a different ecosystem, not just a bigger micro:bit.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D29</span><span class="lc-title">Metro Motor Demo Website</span><div class="tags"><span class="tag red">Hardware L3</span></div><a class="lc-res" href="https://evanweinberg.com/robotics/tetrix_metro/" target="_blank">Metro Motor Demo</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Work through the teacher's custom motor control website. Wire the Tetrix motor to the Metro. Run example code, modify parameters, and observe results. The site walks through motor wiring, encoder wiring, basic motion, and reading encoder values.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>There are no slides for this day — the website is the entire lesson. It was built specifically for this hardware configuration so the pin numbers, code examples, and wiring diagrams all match exactly what students have in front of them. The encoder is a new concept: a sensor inside the motor that counts rotations, giving the motor awareness of its own position. This sets up the motor challenge on D30.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D30</span><span class="lc-title">Are You Smarter than AI? + Algorithms Intro</span><div class="tags"><span class="tag red">Algorithms</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1qcax8uiUqeJnQJKgKw7xewEilTGB2MeMpz2HnxAYaT0/edit" target="_blank">W11-4 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Warm-up: NYT "Are You Smarter than AI?" puzzle — students try to beat an AI at a task requiring systematic rule-following. Towers of Hanoi: solve for 3, 4, then 5 disks, then articulate the algorithm in plain language. Self-driving car discussion: what rules would a car need to follow to drive itself? Metro Motor Challenge introduced: program the motor to move to a specific encoder position and stop.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>Towers of Hanoi is often students' first encounter with a problem where the algorithm IS the solution — there's no "try it and see." The NYT puzzle surfaces the idea that what looks like intelligence is often systematic rule-following. Both feed into the key framing for Unit 3: a good algorithm is one you could hand to someone with no context and they could execute it exactly.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D31</span><span class="lc-title">Metro Motor Challenge (L3)</span><div class="tags"><span class="tag red">Iterations L3</span><span class="tag red">Hardware L3</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Build and iterate on the motor challenge: program the Metro to move to a target encoder position accurately. Document at least 3 iterations in the template, with each showing code changes and test results. Teacher's own iteration document shared as a model.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>Sharing the teacher's iteration document is one of the strongest pedagogical moves in the course. It shows: the teacher's first version didn't work, the teacher had to debug, the teacher documented what went wrong. Students who think good work means getting it right first need to see the person assessing them doing it the way the standard requires.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D32–D33</span><span class="lc-title">Flowcharts and Pseudocode</span><div class="tags"><span class="tag red">Algorithms L2</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>D32: formal introduction to flowchart symbols (ovals, rectangles, diamonds, parallelograms). Students use a Gemini prompt to analyze their own previous code and generate a flowchart. D33: draw the flowchart by hand or digitally, then submit to Gemini for feedback on accuracy. The U3D8 handout guides the analysis.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>Students often conflate pseudocode with commented code. Pseudocode is language-independent logic — no Python syntax, no indentation. Watch for students who paste Gemini's flowchart output without really processing it. The goal is that a student can trace their own program logic through the diagram they produced, not just that they've submitted a diagram.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D34</span><span class="lc-title">L2 Algorithms Assessment</span><div class="tags"><span class="tag red">Algorithms L2</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1GyolsNTw2n-Exzkw94-EIqAVznlmBAPow_H64bDjhHY/edit" target="_blank">W13-1 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Document and submit the L2 algorithms work: Gemini conversation transcript, final flowchart, and brief written explanation. Submitted as a Google Doc.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>This is the formal collection point for the flowchart work from D32–D33. Students who need more time to refine their diagram can do so here. The submission should show both the AI conversation that generated the flowchart and the student's cleaned-up final version.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D35</span><span class="lc-title">Algorithms Case Study — Reaction Tester</span><div class="tags"><span class="tag red">Algorithms</span><span class="tag red">Hardware</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Warm-up discussion: how would you measure reaction time with buttons and LEDs? Students build the reaction tester — Metro, two buttons, one LED — and trace the algorithm structure: set state → wait for event → record time → calculate → display. Design Challenge introduced: build a Metro-based system that measures something otherwise hard to see or track.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The reaction tester is useful because the algorithm has a specific, reusable pattern. Once students see trigger → capture → calculate → display, they can map their own design challenge onto it. The transition from the case study to the design challenge should feel like: here is the template, now what's your version of each step?</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D36</span><span class="lc-title">L3 Algorithm Design with Gemini</span><div class="tags"><span class="tag red">Algorithms L3</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Students use the full Gemini algorithm design prompt: define the measurement challenge, describe the hardware, explain what triggers the measurement, and ask Gemini to guide the algorithm design through leading questions. After the conversation, students draw a flowchart summarizing the algorithm. This conversation and flowchart together are the L3 assessment artifact.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The prompt asks Gemini to ask questions rather than provide answers, making it a Socratic partner rather than a code generator. This is the most carefully designed AI interaction in the course. Watch for students who let Gemini jump straight to code — they're missing the point of the L3 standard, which is about designing the algorithm before writing it.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D37</span><span class="lc-title">Metro Algorithm Design — Build Day</span><div class="tags"><span class="tag red">Algorithms L3</span><span class="tag red">Iterations L3</span><span class="tag red">Hardware L3</span></div><a class="lc-res" href="https://docs.google.com/presentation/d/1Bma0YdNufPWdkTVgCecdaHcC3B7YygFEbwN18QwIwzo/edit" target="_blank">W14-1 Slides</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Full build day: implement the algorithm designed in D36 on the Metro, iterate, debug, and document. Students should be working from the flowchart they drew — if the algorithm is wrong, the code will be wrong.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>Students who designed a vague algorithm in D36 will hit a wall here. That's actually useful — it surfaces the importance of the design-before-code sequence. Push students back to their flowchart rather than letting them improvise. The project template should have new photos and iteration notes by end of class.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D38</span><span class="lc-title">Hackathon Pitch (L4 Communication)</span><div class="tags"><span class="tag red">Communication L4</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Teams pitch their algorithm design projects at the hackathon. The pitch covers the problem, the algorithm, the current state of the build, and what they'd do next. L4 Communication assessment.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The hackathon format gives the Communication L4 real stakes and a real audience. The L4 standard says documentation should be detailed enough that another student could replicate the design. A strong pitch explains why the design works and what the algorithm decides, not just what the device does.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D39–D40</span><span class="lc-title">Project Dashboard &amp; Evidence Submission</span><div class="tags"><span class="tag red">All standards</span></div><a class="lc-res" href="https://docs.google.com/document/d/1F9DPF-dLhqyShmAzqErV3tbdTYD6u17jpjn90k8lszw/edit" target="_blank">W15 Dashboard</a></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Students track project status in the W15 Google Doc dashboard and submit evidence of work against student-chosen standards.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>This is a structured reflection period, not a build period. Students should be organizing and submitting evidence they've already created. The dashboard helps them see which standards they've addressed and which still need documentation.</p></div>
+  </div>
+</div>
+<div class="lc">
+  <div class="lc-header"><span class="lc-day">D41–D43</span><span class="lc-title">Final Week — Button Press Challenge &amp; Final Submission</span><div class="tags"><span class="tag red">All standards (student choice)</span></div></div>
+  <div class="lc-body">
+    <div class="lc-a"><strong>What students do</strong><p>Button Press Challenge: a single bounded task assessed multiple ways across remaining standards. Final project submission: students choose which standards to demonstrate, with L4 Communication required. Assessment check-in comparing opening and current proficiency levels.</p></div>
+    <div class="lc-n"><strong>Teacher notes</strong><p>The "student chooses standards" final project is the most personalized moment of the course. The Button Press Challenge gives a concrete, bounded task for demonstrating standards not yet fully shown. The beginning vs. current comparison is worth doing carefully — students often underestimate how far they've come, and seeing the opening levels side by side with current levels is a good closing moment.</p></div>
+  </div>
+</div>
+</div>
+
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Unit 3 assessments</h3>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-obs">OBS</div>
+      <div class="assignment-info">
+        <h4>L3 – Hardware – Tetrix Metro Motor Task (Observational)</h4>
+        <p>Teacher observes Metro motor wiring and programming during class. Assesses correct connections and code implementation.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l3">L3</div>
+      <div class="assignment-info">
+        <h4>L3 – Prototyping and Iterations – Metro Motor Challenge</h4>
+        <p>Iteration document showing multiple versions of the Metro motor challenge code, what changed, and why. Teacher's own example file is shared as a model.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l2">L2</div>
+      <div class="assignment-info">
+        <h4>L2 – Flowcharts and Pseudocode</h4>
+        <p>Google Doc containing the Gemini conversation and the hand-drawn or digital flowchart of a previous project's code.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l3">L3</div>
+      <div class="assignment-info">
+        <h4>L3 – Algorithm Design with Gemini</h4>
+        <p>Google Doc with the full Gemini conversation, corrected flowchart, and algorithm summary. For the measurement design challenge.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l4">L4</div>
+      <div class="assignment-info">
+        <h4>L4 – Hackathon Pitch</h4>
+        <p>Pitch presentation at the hackathon for the algorithm design project. L4 Communication assessment.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-sub">SUB</div>
+      <div class="assignment-info">
+        <h4>W15-2: Project Evidence Submission</h4>
+        <p>Google Doc with evidence of work across the project week against student-chosen standards.</p>
+      </div>
+    </div>
+    <div class="assignment-row">
+      <div class="assignment-badge badge-l4">L4</div>
+      <div class="assignment-info">
+        <h4>L4 – Final Project Submission (student chooses standards)</h4>
+        <p>Final submission assessing student-chosen standards. L4 Communication is required. Additional standards (Wiring, Algorithms, Iterations) may also be demonstrated. Includes assessment check-in comparing beginning vs. current levels.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Unit 3 file inventory</h3>
+    <a class="resource-link" href="https://docs.google.com/presentation/d/1m1P4Ksb9ExFCfN9cBFm5wCj08oUbKe8CT4x9l9LKwJU/edit" target="_blank"><span class="icon">🔗</span> W11-1: Intro to Metro (Google Slides) <span>online</span></a>
+    <a class="resource-link" href="https://evanweinberg.com/robotics/tetrix_metro/" target="_blank"><span class="icon">🌐</span> Metro Motor Demo Website <span>online</span></a>
+    <a class="resource-link" href="https://www.nytimes.com/interactive/2025/03/26/business/ai-smarter-human-intelligence-puzzle.html" target="_blank"><span class="icon">🌐</span> NYT: Are You Smarter than AI? <span>online</span></a>
+    <a class="resource-link" href="https://docs.google.com/presentation/d/1qcax8uiUqeJnQJKgKw7xewEilTGB2MeMpz2HnxAYaT0/edit" target="_blank"><span class="icon">🔗</span> W11-4: Algorithms Intro &amp; Motor Challenge <span>online</span></a>
+    <a class="resource-link" href="https://docs.google.com/presentation/d/1GyolsNTw2n-Exzkw94-EIqAVznlmBAPow_H64bDjhHY/edit" target="_blank"><span class="icon">🔗</span> W13-1: Algorithms Case Study Slides <span>online</span></a>
+    <a class="resource-link" href="https://docs.google.com/presentation/d/1Bma0YdNufPWdkTVgCecdaHcC3B7YygFEbwN18QwIwzo/edit" target="_blank"><span class="icon">🔗</span> W14-1: Metro Algorithm Design Project <span>online</span></a>
+    <a class="resource-link" href="https://docs.google.com/document/d/1F9DPF-dLhqyShmAzqErV3tbdTYD6u17jpjn90k8lszw/edit" target="_blank"><span class="icon">🔗</span> W15-1: Project Dashboard (Google Doc) <span>online</span></a>
+    <a class="resource-link" href="https://drive.google.com/drive/folders/1gPE95bBylxIcxkrOp2trhZqH171kgRK1" target="_blank"><span class="icon">📁</span> Week 16 Google Drive Folder <span>online</span></a>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U3D1 – Adafruit Metro Introduction.pptx <span>local</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U3D3 – Intro to Algorithms.pptx <span>local</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U3D7 – Algorithms and Flow Charts.pptx <span>local</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U3D8 – Flowchart Analysis.pptx <span>local</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U3D9 – Algorithms Case Study.pptx <span>local</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> U3D10 – Algorithms Build and Test.pptx <span>local</span></span>
+    <span class="resource-link resource-local"><span class="icon">📊</span> Motor Challenge Iterations Example.pptx <span>teacher exemplar</span></span>
+    <a class="resource-link" href="Unit 3 - Metro and Algorithms/U3D8 - Flowchart Analysis Handout.md"><span class="icon">📄</span> U3D8 – Flowchart Analysis Handout.docx <span>student handout</span></a>
+    <span class="resource-link resource-local"><span class="icon">📊</span> W16-1 Final Week Project.pptx <span>Week 16</span></span>
+    <a class="resource-link" href="Unit 3 - Metro and Algorithms/metro-rp2040-l298n-guide.html"><span class="icon">🌐</span> metro-rp2040-l298n-guide.html <span>local reference</span></a>
+    <a class="resource-link" href="Unit 3 - Metro and Algorithms/motor_control_CA.py.md"><span class="icon">📄</span> motor_control_CA.py.docx <span>starter code reference</span></a>
+  </div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PROFICIENCY STANDARDS -->
+<!-- ============================================================ -->
+<div class="spacer-section" id="standards"></div>
+<div class="section-title">Proficiency Standards</div>
+
+<div class="note-box">
+  This course uses Nido de Aguilas's proficiency scale (0–4). Score 3.0 is the priority standard — the learning goal. Score 2.0 covers foundational vocabulary and simpler processes. Score 4.0 requires in-depth inference, transfer, and application. Students earn half-point scores (1.5, 2.5, 3.5) for partial progress between whole levels.
+</div>
+
+<div class="card" style="overflow-x:auto;">
+  <h3 style="margin-bottom:1rem;">Standard 1: Communication [Documentation]</h3>
+  <table class="scale-table">
+    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
+    <tbody>
+      <tr class="scale-4"><td>4.0</td><td>Documentation is detailed enough that another student could replicate the design. Communicates elements of the design in a particularly engaging or innovative way.</td></tr>
+      <tr class="scale-3"><td>3.0</td><td>Communicates a detailed explanation of a design problem, the state of the proposed solution, and its features. Structures documentation logically from one stage to the next. Uses design principles and appropriate text, images, and video to communicate with an audience.</td></tr>
+      <tr class="scale-2"><td>2.0</td><td>Shows elements of the design process using text, visuals, and graphic design principles. Identifies the problem and proposed solution at a point in time. Explains how a design meets the requirements of a problem.</td></tr>
+      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card" style="overflow-x:auto;">
+  <h3 style="margin-bottom:1rem;">Standard 2: Prototypes &amp; Iterations [Design Process]</h3>
+  <table class="scale-table">
+    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
+    <tbody>
+      <tr class="scale-4"><td>4.0</td><td>Creates a program or prototype that helps solve a problem for someone else in the school. Shows others how to test and improve their prototypes. Finds creative ways to make the program do more than what was asked.</td></tr>
+      <tr class="scale-3"><td>3.0</td><td>Creates and tests multiple versions of a program/prototype that solves a problem, explaining personal design choices. Analyzes specific challenges in each version and how to address them. Demonstrates how testing and feedback leads to changes.</td></tr>
+      <tr class="scale-2"><td>2.0</td><td>Modifies existing code to create a basic working prototype. Tests a prototype against given requirements. Explains basic changes between versions.</td></tr>
+      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card" style="overflow-x:auto;">
+  <h3 style="margin-bottom:1rem;">Standard 3: Hardware Inputs &amp; Outputs [Technology Use]</h3>
+  <table class="scale-table">
+    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
+    <tbody>
+      <tr class="scale-4"><td>4.0</td><td>Builds systems that use multiple sensor types and outputs together. Finds creative new ways to use the hardware. Adds features that help find and fix hardware problems.</td></tr>
+      <tr class="scale-3"><td>3.0</td><td>Connects sensors and outputs to a control board and demonstrates that outputs correctly respond to inputs. Correctly implements inputs and outputs in code within a larger program. Troubleshoots connections between power, sensors, and control boards.</td></tr>
+      <tr class="scale-2"><td>2.0</td><td>Picks appropriate sensors (analog/digital) and outputs for a project and connects them correctly. Follows diagrams to wire a circuit. Changes example code to read inputs and set outputs.</td></tr>
+      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card" style="overflow-x:auto;">
+  <h3 style="margin-bottom:1rem;">Standard 4: Responding to Events [Technology Use]</h3>
+  <table class="scale-table">
+    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
+    <tbody>
+      <tr class="scale-4"><td>4.0</td><td>Makes programs that handle many different events simultaneously. Creates helpful ways to show what events are happening. Adds special code to handle unexpected problems or errors.</td></tr>
+      <tr class="scale-3"><td>3.0</td><td>Writes code that responds correctly when buttons are pressed or sensors activated. Makes programs that handle different types of events. Shows clearly when events are detected and what the program does in response.</td></tr>
+      <tr class="scale-2"><td>2.0</td><td>Finds and names the different events in example programs. Explains what happens when different events occur. Makes simple changes to how programs respond to events.</td></tr>
+      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card" style="overflow-x:auto;">
+  <h3 style="margin-bottom:1rem;">Standard 5: Functions &amp; Modular Code [Technology Use]</h3>
+  <table class="scale-table">
+    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
+    <tbody>
+      <tr class="scale-4"><td>4.0</td><td>Reorganizes complex code to make it clearer and more efficient. Creates a collection of functions that can be used in different projects. Uses advanced ways to make functions work together.</td></tr>
+      <tr class="scale-3"><td>3.0</td><td>Designs and uses functions with appropriate inputs and outputs (parameters and return values). Breaks down a personal project into smaller, function-sized pieces. Documents functions with examples showing their specific use (purpose, parameters, return values).</td></tr>
+      <tr class="scale-2"><td>2.0</td><td>Identifies function inputs, outputs, and basic operations. Demonstrates proper function calling syntax with different parameter types. Tests functions using provided test cases.</td></tr>
+      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card" style="overflow-x:auto;">
+  <h3 style="margin-bottom:1rem;">Standard 6: Planning &amp; Algorithms [Technology Use]</h3>
+  <table class="scale-table">
+    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
+    <tbody>
+      <tr class="scale-4"><td>4.0</td><td>Creates especially clear and efficient solutions. Uses advanced ways to control program flow. Designs solutions that can be applied to similar problems.</td></tr>
+      <tr class="scale-3"><td>3.0</td><td>Creates detailed flowcharts and pseudocode to plan program logic. Implements complex control structures using compound boolean operators and switch/case statements. Designs and documents algorithms that solve multi-step problems.</td></tr>
+      <tr class="scale-2"><td>2.0</td><td>Draws simple flowcharts to show how a program will work. Follows and adjusts existing code to solve a problem. Uses and adjusts basic program controls (if/then, loops) from example code.</td></tr>
+      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h3>CSTA Standards alignment</h3>
+  <p style="font-size:0.875rem;color:var(--muted);margin-bottom:0.5rem;">This course is designed around the following Computer Science Teachers Association (CSTA) standards:</p>
+  <table class="lesson-table">
+    <thead><tr><th>Course Standard</th><th>CSTA Standard</th></tr></thead>
+    <tbody>
+      <tr><td>Communication</td><td>CSTA 3A-AP-23 — Document design decisions using text, graphics, presentations, and/or demonstrations in the development of complex programs.</td></tr>
+      <tr><td>Iterations &amp; Prototypes</td><td>CSTA 3A-AP-13 — Create prototypes that use algorithms to solve computational problems by leveraging prior student knowledge and personal interests.</td></tr>
+      <tr><td>Hardware I/O</td><td>CSTA 3B-CS-02 — Illustrate ways computing systems implement logic, input, and output through hardware components.</td></tr>
+      <tr><td>Events</td><td>CSTA 3A-AP-16 — Design and iteratively develop computational artifacts for practical intent, personal expression, or to address a societal issue by using events to initiate instructions.</td></tr>
+      <tr><td>Functions</td><td>CSTA 2-AP-14 — Create procedures with parameters to organize code and make it easier to reuse. / CSTA 3A-AP-17 — Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects.</td></tr>
+      <tr><td>Algorithms</td><td>CSTA 2-AP-10 — Use flowcharts and/or pseudocode to address complex problems as algorithms. / CSTA 2-AP-12 — Design and iteratively develop programs that combine control structures, including nested loops and compound conditionals.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- COURSE RESOURCES -->
+<!-- ============================================================ -->
+<div class="spacer-section" id="resources"></div>
+<div class="section-title">Course Resources</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Key online resources</h3>
+    <a class="resource-link" href="https://evanweinberg.com/robotics/simulator/" target="_blank">
+      <span class="icon">🤖</span> EMW Robotics Simulator
+      <span>evanweinberg.com</span>
+    </a>
+    <a class="resource-link" href="https://evanweinberg.com/robotics/motor-driver/" target="_blank">
+      <span class="icon">⚙️</span> Motor Driver Information Guide
+      <span>evanweinberg.com</span>
+    </a>
+    <a class="resource-link" href="https://evanweinberg.com/robotics/tetrix_metro/" target="_blank">
+      <span class="icon">🔌</span> Metro Motor Demo Website
+      <span>evanweinberg.com</span>
+    </a>
+    <a class="resource-link" href="https://python.microbit.org/v/3" target="_blank">
+      <span class="icon">💻</span> micro:bit Python Code Editor
+      <span>microbit.org</span>
+    </a>
+    <a class="resource-link" href="https://docs.google.com/document/d/1s96Ts5DIs5uMsbbwv_nJHng4IGb3-eVpkS8eTZJ6W48/edit" target="_blank">
+      <span class="icon">📋</span> Robotics Proficiency Scales (Google Doc)
+      <span>Google Docs</span>
+    </a>
+    <a class="resource-link" href="https://docs.google.com/document/d/1XHLimavG3JxfmczhnIEYlxycPMwARPIdgBTwv7O8Ujw/edit" target="_blank">
+      <span class="icon">📋</span> Course Syllabus (Google Doc)
+      <span>Google Docs</span>
+    </a>
+    <a class="resource-link" href="https://gemini.google.com" target="_blank">
+      <span class="icon">✨</span> Gemini AI (used extensively in this course)
+      <span>google.com</span>
+    </a>
+    <a class="resource-link" href="https://www.desmos.com" target="_blank">
+      <span class="icon">📈</span> Desmos (for graphing sensor data)
+      <span>desmos.com</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <h3>Local files (course folder)</h3>
+    <a class="resource-link" href="Robotics Syllabus - S1 2025.md"><span class="icon">📄</span> Robotics Syllabus – S1 2025.docx</a>
+    <a class="resource-link" href="Robotics Proficiency Scale.md"><span class="icon">📄</span> Robotics Proficiency Scale.md</a>
+    <span class="resource-link resource-local"><span class="icon">📊</span> Robotics 25-26 Day Calendar.xlsx</span>
+    <span class="resource-link resource-local"><span class="icon">📁</span> Unit 1 – micro_bit and Events/ (23 files)</span>
+    <span class="resource-link resource-local"><span class="icon">📁</span> Unit 2 – Functions/ (15 files)</span>
+    <span class="resource-link resource-local"><span class="icon">📁</span> Unit 3 – Metro and Algorithms/ (12 files + Week 16 subfolder)</span>
+    <span class="resource-link resource-local"><span class="icon">📁</span> Micro_Bit/ (Meet the microbit.hex)</span>
+    <span class="resource-link resource-local"><span class="icon">🗂️</span> Home-Robotics-Section-1.imscc (Schoology export)</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3>About the instructor</h3>
+  <p>
+    Evan Weinberg teaches at Nido de Aguilas International School in Santiago, Chile. He got into robotics through a university course building and programming LEGO robots, and has spent years leading high school robotics competition teams. He builds custom web tools for his students, including the motor driver guide, Metro demo site, and the robotics simulator linked above.
+  </p>
+  <p>
+    His teaching approach centers on real problems, honest iteration (including showing students his own documented debugging process), and treating AI as a legitimate learning partner rather than a shortcut to avoid.
+  </p>
+</div>
+
+<div style="text-align:center;padding:2rem 0 1rem;color:var(--muted);font-size:0.8rem;border-top:1px solid var(--border);margin-top:2rem;">
+  Robotics 2025–2026 · Nido de Aguilas International School · Course guide generated from Google Drive export and Schoology archive
+</div>
+
+</div><!-- .container -->
+
+<script>
+// Smooth scroll for nav links
+document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+<!-- MD Modal -->
+<div id="md-modal" onclick="if(event.target===this)closeMd()">
+  <div id="md-modal-box">
+    <button id="md-close" onclick="closeMd()">&#x2715;</button>
+    <div id="md-file-label"></div>
+    <div id="md-content" class="md-body"></div>
+  </div>
+</div>
+<script>
+var _C={"Robotics Proficiency Scale.md": "<p><strong>Robotics Proficiency Scale Map</strong></p>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: left;\"></th>\n<th style=\"text-align: left;\">Communication [Documentation]</th>\n<th style=\"text-align: left;\">Prototypes &amp; Iterations [Design Process]</th>\n<th style=\"text-align: left;\">Hardware Inputs &amp; Outputs [Technology Use]</th>\n<th style=\"text-align: left;\">Responding to Events [Technology Use]</th>\n<th style=\"text-align: left;\">Functions &amp; Modular Code [Technology Use]</th>\n<th style=\"text-align: left;\">Planning &amp; Algorithms [Technology Use]</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: left;\"><strong>4.0</strong></td>\n<td style=\"text-align: left;\">In addition to meeting all the criteria of 3.0, the student might:  Sufficient detail in documentation that another student could create the same design Communicate elements of the design in a particularly engaging or innovative way</td>\n<td style=\"text-align: left;\">In addition to meeting all the criteria of 3.0, the student might: Create a program or prototype that helps solve a problem for someone else in the school Show others how to test and improve their prototypes Find creative ways to make their program do more than what was asked for</td>\n<td style=\"text-align: left;\">In addition to meeting all the criteria of 3.0, the student might: Build systems that use multiple types of sensors and outputs together Find creative new ways to use the hardware Add features that help find and fix hardware problems</td>\n<td style=\"text-align: left;\">In addition to meeting all the criteria of 3.0, the student might: Make programs that can handle many different events happening at once Create helpful ways to show what events are happening in the program Add special code to handle unexpected problems or errors</td>\n<td style=\"text-align: left;\">In addition to meeting all the criteria of 3.0, the student might: Reorganize complex code to make it clearer and more efficient using functions Create a collection of functions that can be used in different projects Use advanced ways to make functions work together</td>\n<td style=\"text-align: left;\">In addition to meeting all the criteria of 3.0, the student might: Create especially clear and efficient ways to solve problems Use advanced ways to control program flow Design solutions that can be used to solve similar problems</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>3.5</strong></td>\n<td style=\"text-align: left;\">In addition to score 3.0 performance, in depth inferences and application with partial success (score 4.0 content).</td>\n<td style=\"text-align: left;\"></td>\n<td style=\"text-align: left;\"></td>\n<td style=\"text-align: left;\"></td>\n<td style=\"text-align: left;\"></td>\n<td style=\"text-align: left;\"></td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>3.0</strong></td>\n<td style=\"text-align: left;\">The learner will:  ​​communicate a detailed explanation of a design problem, as well as the state of a proposed or designed solution and its features Structure documentation to logically flow from one stage to the next Use design principles and appropriate choices of text, images, and video to communicate with an audience</td>\n<td style=\"text-align: left;\">The learner will: Create and test multiple versions of a program/prototype that solves a problem, explaining personal design choices Analyze specific challenges in each version, and how to address them Demonstrate how testing and feedback leads to changes in a prototype</td>\n<td style=\"text-align: left;\">The learner will: Connect sensors and outputs to a control board and demonstrate that outputs correctly respond to inputs. Correctly implement inputs and outputs using code within a larger program. Troubleshoot connections between power, sensors, and control boards</td>\n<td style=\"text-align: left;\">The learner will: Write code that responds correctly when buttons are pressed or sensors activated Make programs that can handle different types of events Show clearly when events are detected and what the program does in response</td>\n<td style=\"text-align: left;\">The learner will: Design and and use functions with appropriate inputs and outputs (parameters and return values) Break down a personal project into smaller, function sized pieces Document functions with examples showing their specific use in the project (i.e.  purpose, parameters, and return values)</td>\n<td style=\"text-align: left;\">The learner will:  Create detailed flowcharts and pseudocode to plan program logic Implement complex control structures using compound boolean operators and switch/case (Match/Case) statements Design and document algorithms that solve multi-step problems</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>2.5</strong></td>\n<td style=\"text-align: left;\">No major errors or omissions regarding the simpler details and processes (score 2.0 content) and partial knowledge of the more complex ideas and processes (score 3.0 content)</td>\n<td style=\"text-align: left;\"></td>\n<td style=\"text-align: left;\"></td>\n<td style=\"text-align: left;\"></td>\n<td style=\"text-align: left;\"></td>\n<td style=\"text-align: left;\"></td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>2.0</strong></td>\n<td style=\"text-align: left;\">The learner will: show elements of the design process using combinations of text, visuals, and graphic design principles identify the problem and the proposed solution at a point in time.  explain how a design meets the requirements of a problem or design description</td>\n<td style=\"text-align: left;\">The learner will Modify existing code to create a basic working prototype Test a prototype against given requirements Explain basic changes between versions of code or prototype</td>\n<td style=\"text-align: left;\">The learner will Pick appropriate sensor inputs (analog/digital) and outputs (motors, buzzers, lights) for a project and connect them correctly Follow diagrams to wire up a circuit correctly Change example code to read inputs and set outputs</td>\n<td style=\"text-align: left;\">The learner will: Find and name the different events in example programs Explain what happens when different events occur (such as when buttons are pressed or sensors are activated) Make simple changes to how programs respond to events</td>\n<td style=\"text-align: left;\">The learner will: Identify function inputs, outputs, and basic operations Demonstrate proper function calling syntax with different parameter types Test functions using provided test cases</td>\n<td style=\"text-align: left;\">The learner will: Draw simple flowcharts to show how a program will work Follow and adjust existing code to solve a problem Use and adjust basic program controls (if/then, loops) from example code</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>1.5</strong></td>\n<td style=\"text-align: left;\">Partial knowledge of the simpler details and processes (score 2.0 content), but major errors or omissions regarding the more complex ideas and processes (score 3.0 content).</td>\n<td style=\"text-align: left;\">Partial knowledge of the simpler details and processes (score 2.0 content), but major errors or omissions regarding the more complex ideas and processes (score 3.0 content).</td>\n<td style=\"text-align: left;\">Partial knowledge of the simpler details and processes (score 2.0 content), but major errors or omissions regarding the more complex ideas and processes (score 3.0 content).</td>\n<td style=\"text-align: left;\">Partial knowledge of the simpler details and processes (score 2.0 content), but major errors or omissions regarding the more complex ideas and processes (score 3.0 content).</td>\n<td style=\"text-align: left;\">Partial knowledge of the simpler details and processes (score 2.0 content), but major errors or omissions regarding the more complex ideas and processes (score 3.0 content).</td>\n<td style=\"text-align: left;\">Partial knowledge of the simpler details and processes (score 2.0 content), but major errors or omissions regarding the more complex ideas and processes (score 3.0 content).</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>1.0</strong></td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content) and some of the more complex ideas and processes (3.0 content).</td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content) and some of the more complex ideas and processes (3.0 content).</td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content) and some of the more complex ideas and processes (3.0 content).</td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content) and some of the more complex ideas and processes (3.0 content).</td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content) and some of the more complex ideas and processes (3.0 content).</td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content) and some of the more complex ideas and processes (3.0 content).</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>0.5</strong></td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content), but not the more complex ideas and processes (score 3.0 content).</td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content), but not the more complex ideas and processes (score 3.0 content).</td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content), but not the more complex ideas and processes (score 3.0 content).</td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content), but not the more complex ideas and processes (score 3.0 content).</td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content), but not the more complex ideas and processes (score 3.0 content).</td>\n<td style=\"text-align: left;\">With help, partial understanding of some of the simpler details and processes (score 2.0 content), but not the more complex ideas and processes (score 3.0 content).</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>0.0</strong></td>\n<td style=\"text-align: left;\">Even with help, no understanding or skill demonstration</td>\n<td style=\"text-align: left;\">Even with help, no understanding or skill demonstration</td>\n<td style=\"text-align: left;\">Even with help, no understanding or skill demonstration</td>\n<td style=\"text-align: left;\">Even with help, no understanding or skill demonstration</td>\n<td style=\"text-align: left;\">Even with help, no understanding or skill demonstration</td>\n<td style=\"text-align: left;\">Even with help, no understanding or skill demonstration</td>\n</tr>\n</tbody>\n</table>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: left;\">Nido Proficiency Scale Score Clarifications</th>\n<th style=\"text-align: left;\"></th>\n<th style=\"text-align: left;\"></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: left;\"><strong>Score 2.0:</strong>  The building blocks of the learning.  Focus on content/vocabulary  that should be mastered by the learner rather than trying to include all the knowledge and skills necessary to accomplish the Score 3.0.  The goal is not to create a massive checklist of foundational knowledge, and skills learners must move through to be determined proficient. The learning goal is the Scale Level 3.0 target statement. Score 2.0 will likely align to lower levels of Bloom’s taxonomy and/or DOK Level 2.  Typical command terms:  List, Explain, Discuss, Identify, Describe, Compare</td>\n<td style=\"text-align: left;\"><strong>Score 3.0</strong>  The priority standard(s). At times, multiple standards may be included in one proficiency scale. Criteria to determine if multiple standards can be included (covariance): They can be taught together They can and should be measured together Standards often align to upper levels of Bloom’s taxonomy and/or DOK Level 3 or Marzano’s New Taxonomy. Typical command terms:  Apply, Analyze, Contrast, Interpret, Synthesize, Similar Transfer</td>\n<td style=\"text-align: left;\"><strong>Score 4.0</strong>  In depth inferences and application and/or deeper levels of complexity, sophistication, and/or transfer.  Score 4.0 does not equate to more work or learning at the next grade level, but rather a higher level of performance that integrates and applies the contents of the entire scale. Teams will determine one sample 4.0 score task, and be open to other student demonstrations of deep learning. Score 4.0 tasks will likely align to upper levels of Bloom’s taxonomy and/or DOK Level 4.  Typical command terms:  Evaluate, Infer, Conclude, Dissimilar Transfer</td>\n</tr>\n</tbody>\n</table>\n<p><strong>Proposed Standards:</strong></p>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: left;\">Documentation:\u000bCSTA 3A-AP-23 - Document design decisions using text, graphics, presentations, and/or demonstrations in the development of complex programs.</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: left;\">Design Process: CSTA 3A-AP-13 Create prototypes that use algorithms to solve computational problems by leveraging prior student knowledge and personal interests.</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\">Technology Use: CSTA 2-AP-14 - Create procedures with parameters to organize code and make it easier to reuse OR 3A-AP-17 Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects. (P3.2) CSTA 3A-AP-16 Design and iteratively develop computational artifacts for practical intent, personal expression, or to address a societal issue by using events to initiate instructions. (P5.2)\u000b\u000bCSTA 2-AP-12 Design and iteratively develop programs that combine control structures, including nested loops and compound conditionals. (P5.1, P5.2) CSTA 2-AP-10 Use flowcharts and/or pseudocode to address complex problems as algorithms. (P4.4, P4.1) CSTA 3B-CS-02 - Illustrate ways computing systems implement logic, input, and output through hardware components.</td>\n</tr>\n</tbody>\n</table>\n<p><strong>TRADUCCIÓN/ Nido High School Proficiency Scale Template</strong></p>\n<p><em>Make a copy of this template for each of the priority standards selected for a competency.</em> </p>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: left;\">Competencia:</th>\n<th style=\"text-align: left;\"></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: left;\"><strong>4.0</strong></td>\n<td style=\"text-align: left;\">Además de exhibir el desempeño requerido en 3.0, demuestra capacidad de inferir y aplicar con un nivel de complejidad e integración mayor.  <em>Agregar ejemplo de tarea de desempeño 4.0</em></td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>3.5</strong></td>\n<td style=\"text-align: left;\">Además de cumplir con lo requerido en 3.0, se demuestran inferencias profundas y aplicación parcial en el desempeño (contenido en relación a 4.0).</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>3.0</strong></td>\n<td style=\"text-align: left;\">El/la estudiante puede:  <em>OA/Estándar(es) priorizado(s)</em></td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>2.5</strong></td>\n<td style=\"text-align: left;\">No presenta errores u omisiones importantes respecto de ideas y procesos simples (contenido en relación a 2.0) y demuestra conocimiento parcial de conceptos y procesos de mayor complejidad (contenido en relación a 3.0)</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>2.0</strong></td>\n<td style=\"text-align: left;\">Utilice terminología, como por ejemplo: El/la estudiante puede:</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>1.5</strong></td>\n<td style=\"text-align: left;\">Conocimiento parcial de ideas y procesos simples (2.0), presentando errores y/u omisiones respecto de ideas y conceptos de mayor complejidad (relacionados al contenido )</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>1.0</strong></td>\n<td style=\"text-align: left;\">Con ayuda, demuestra comprensión parcial de detalles y procesos simples (esperados en 2.0) y algunos conceptos e ideas de mayor complejidad (esperados en 3.0)</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>0.5</strong></td>\n<td style=\"text-align: left;\">Con ayuda, demuestra comprensión parcial de algunos conceptos simples y/o procesos e ideas de baja complejidad (esperado para 2.0), pero no de ideas y conceptos de mayor complejidad (propios del contenido de 3.0).</td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>0.0</strong></td>\n<td style=\"text-align: left;\">Aun recibiendo ayuda, no demuestra comprensión ni habilidad.</td>\n</tr>\n</tbody>\n</table>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: left;\">Clarificaciones sobre el puntaje de las escalas de competencia</th>\n<th style=\"text-align: left;\"></th>\n<th style=\"text-align: left;\"></th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: left;\"><strong>Puntaje 2.0:</strong>  Construcción de bloques de aprendizaje.  Céntrese en el contenido/vocabulario que el alumno debe dominar en lugar de intentar incluir todos los conocimientos y destrezas necesarios para alcanzar el 3.0.  El objetivo no es crear una lista de cotejo de conocimientos y destrezas, sino tener en cuenta que lo observado debe ir en línea con el logro del objetivo de aprendizaje enunciado en 3.0 La puntuación 2.0 se ajustará probablemente a los niveles inferiores de la taxonomía de Bloom y/o al nivel 2 del DOK (tabla de comprensión profunda).  Términos más usados:  Enumerar, Explicar, Discutir, Identificar, Describir, Comparar.</td>\n<td style=\"text-align: left;\"><strong>Puntaje 3.0</strong>  Objetivo de Aprendizaje/estándar. En ocasiones, pueden incluirse múltiples estándares (OA’s) en una escala de competencia.  Los criterios para determinar si se incluyen múltiples estándares: Ambos estándares/OA’s pueden enseñarse al mismo tiempo. Se puede y deben ser medidos juntos.  Los OA’s/estándares generalmente se alinean a niveles superiores de la taxonomía de Bloom y/o al nivel 3 de DOK.  Términos más usados:  Aplicar, Analizar, Contrastar, Interpretar, Sintetizar, Transferencia similar</td>\n<td style=\"text-align: left;\"><strong>Puntaje 4.0</strong>  Inferencias profundas y aplicación en niveles de mayor complejidad, sofisticación y/o transferencia.  4.0 no equivale a más trabajo o aprendizaje en el grado siguiente, sino a un nivel superior de rendimiento que integra y aplica los contenidos de toda la escala. Teams will determine one sample 4.0 score task, and be open to other student demonstrations of deep learning. Score 4.0 tasks will likely align to upper levels of Bloom’s taxonomy and/or DOK Level 4.  Typical command terms:  Evaluate, Infer, Conclude, Dissimilar Transfer</td>\n</tr>\n</tbody>\n</table>", "Robotics Syllabus - S1 2025.md": "<p>Robotics Syllabus</p>\n<p>School: Nido de Aguilas International School\nInstructor: Evan Weinberg\nEmail: eweinberg@nido.cl</p>\n<p>Location: Room ST303 </p>\n<p>Robots are all around us, often in ways we don't even realize.  Automated systems play a role in our lives, work, and leisure activities. While robots can be complex, they are fundamentally systems built on inputs, outputs, and the programming that connects them.</p>\n<p>This course explores how these systems function, and you'll learn to build and program them yourself.  You'll discover how to connect sensors, power sources, electrical components, and programmable circuits.  We will explore different programming systems and structures to achieve desired results.  Finally, you'll learn how to apply these systems to solve real-world problems.</p>\n<p><strong>What You'll Need:</strong></p>\n<p>Laptop and Charger \nHeadphones or earbuds (When you need to focus or watch instructional videos.)\nPens &amp; Pencils</p>\n<p><strong>Assessment</strong></p>\n<p>You will be evaluated based on your skills in different elements of building robotics systems: communication, iteration and building prototypes, hardware, responding to events, modular code, and algorithms.</p>\n<p>Each of these standards is split into three levels of mastery: level 2 , level 3, and level 4. Your mission is to level up on each of these standards over time until you have met the level 3 on all of the standards. Through a series of design challenges and activities that vary in duration and complexity, you will show how much you've leveled up at a certain point in time. Some of these are simple mastery checks to see if you understand the fundamentals of level 2. Others are larger scale projects to show what you can do in more complex tasks to reach level 3. </p>\n<p>Not every project or activity will have all standards in focus. Some may only emphasize one or two at a time. You will always know which standards are being assessed in a given activity, as well as the target level for the activity. This will help you focus your effort on the important skills and concepts. Most assessments will involve hands-on application of the concepts related to each standard, as well as review of the process of producing the work you submit.</p>\n<p>As with all of our Nido classes, by the end of the semester, you will have a competency level for each of these standards that represents your overall achievement. You will want to use every opportunity given to you to show what you can do. </p>\n<p><strong>A note on AI:</strong>\nGenerative AI tools (ChatGPT, Gemini, Claude, Deepseek, etc.) are powerful learning aids that we will utilize in this course. It's crucial to understand how this impacts your work.\nYou will be expected to use generative AI tools at times as part of the learning process. \nYour knowledge, skills, and understanding may be evaluated using AI tools. \nYou may also be assessed in multiple ways to ensure that your proficiency score matches your level of thinking as described by the appropriate proficiency scale.\nMr. Weinberg will provide clear guidance on the appropriate level of AI use for each activity or assignment. Please ask if you have any questions.</p>\n<p><strong>Submitting Work to Assignments, Late Work, Additional Learning Opportunities</strong>\nSome work will be submitted on paper. Online assignments will generally be submitted through Schoology.\nMr. Weinberg must have editing rights for any Google Workspace document (e.g. Google docs, Sheets, Slides, etc) that you submit to an assignment. Any file that Mr. Weinberg cannot access or open by the due date is not considered an assignment submitted on time.\nPolicies around absences, late work, missing class, and additional learning opportunities will follow the high school guidelines.</p>\n<p><strong>Robotics Expectations</strong>\n<strong>Stay dialed in -</strong>  Show that you are engaged by tracking the speaker, and using your body to show you are with them and listening. Actively participate during discussions, and collaborate when working in groups. \n<strong>Take risks and innovate- </strong>Be open minded, flexible, and creative in your thinking, and don’t be afraid to make mistakes. This is how we show our ingenuity.\n<strong>Show integrity and compassion- </strong>Be honest, and own your mistakes. Don’t be afraid to apologize.  Always advocate for your own needs while being mindful of others' learning needs.<strong> **\n</strong>Push yourself to exceed expectations- <strong>Try your hardest, and be responsible for turning in quality work on time. \n</strong>Take care of yourself, each other, and our space-<strong> Follow class routines to take care of your needs, eat healthy, help others whenever possible, have fun appropriately, relax, and use the systems in the room to keep our space beautiful. \n</strong>Be inclusive,<strong> </strong>and trust that diversity of perspective, strengths, and uniqueness contribute to the class-<strong> Share your thinking, and remember that everyone’s opinion matters. It’s ok to disagree, as long as we are <em>respectful</em>. \n</strong>Take the time to express gratitude and be generous to others- **bring a positive attitude, and lift up the great things your classmates are doing. Remember the power of random acts of kindness!</p>\n<p><strong>A final note about independent work:</strong>\nThis class requires you and your classmates to be mature learners. There will be moments where you will spend extended periods of time working independently.  In order to be successful in this class, it is imperative that you work independently and productively when asked, willingly share your knowledge with classmates, and allow others to be productive without needing regular reminders. </p>", "Unit 3 - Metro and Algorithms/Robotics - Metro Measurement Project Dashboard.md": "<p>| Name | Assessment Document\nL4 Wiring\nL4 Algorithms\nL4 Iterations (optional) | What are you making/measuring? | Goal for today’s class | What help do you need from Mr. Weinberg today? |\n| --- | --- | --- | --- | --- |\n| Nicolas Bravo |  | A break beam sensor that counts how many people walk past the class. | Organizing the flow chart and starting the wiring. - - - - - - - - - - - - - - - - - - - - - - - -  Today I want to finish the wiring for the light sensor. - - - - - - - - - - - - - - - - - - - - - - - - Today, I will start and try to finish the code for the sensor. |  |\n| Daniel Munoz |  | A light sensor that measures how long a basketball is in the air when I shoot it. | Creating a mini version of a light sensor to see if I can make one for a basketball. |  |\n| Rodrigo Danus | L4 Communication | I am making going to use a break beam sensor to count how many bottles are refilled in a day. | I am going to start the wiring, set up the sensor with the metro board and try to add the LED light so I can start doing the code. – – - - – - - - – - - - – - – - - – - - -  Today, I want to finish the wiring, by connecting the sensor and testing it by reading the sensor in code. —--------------------------------------- Today I want to finish the code, I already have a base code that reads the sensor. Now I want to be able to use it for my goal. |  |\n| Finn Hattenbach | Responding to Events | The tilt of a board with a ball on it that will try and adjust to keep the ball in the center. | Finish the flow chart and start making the physical thing. —----------------------------------------- Today I want to finish my wiring to be able to start measuring the ball's position. —----------------------------------------- Today im changing up my idea a little bit, due to this I will need to edit the code a bit. | I need help knowing how to wire some stuff. |\n| Santiago Kupfer |  | Measuring the level of sound using a microphone (sound sensor) and a button (preassure sensor) in order to activate a motor | Create the hardware necessary for this project  —-----------------  Create the software necessary to read the two sensors and also to activate the motor separately, and then join them in order to get the final product finished. | Maybe some help to understand the pins in the microphone |\n| Daihyun Ki | Robotics Project | Using a sensor that mesures the amount of water (ml) in a watterbottle. | Create a light version of this mechanism. Finish adjusting the set value/point of the sensor. |  |\n| Ignacio Aljaro |  | a sensor that changes the output of music based on how loud the environment is —-------------------------------------------- | Begin writing the code and create flowchart —-----------------------------------------  Continue writing code and finish building the circuit |  |\n| Sebastian Laborde |  | I'm making a temperature sensor, which will analyze the temperature until a given degree, and then turn off the air conditioner. When the temperature of my room reaches a difference of one degree it will turn the air on(only turn on and not off since it wont pass the wished temperature) |  |  |\n| Daniil Iavorskii | L4 Wind Speed Meter Project | A wind speed meter that will measure the speed of the wind. And display it in real-time on a screen or send it to a computer. | Today in class, I want to gather all the hardware I need for my project and start making a plan for next class. | Help me find the pieces of hardware I need. And help me with ideas for my project. |\n| Joao Ferrari | Robotics project - Joao Ferrari | A solid fuel model rocket with thrust vector controlling. Measuring the angle of the rocket to calculate the angle to put the motor so that it flies straight. | Get an Idea and do all the planing |  |\n| Felipe Saito | L4 Wiring L4 Algorithms L4 Iterations (optional) | I am making a temperature sensor, in this case a thermometer. It will measure the room temperature during the night (highest temp) | Start the code and try to have most of it done.  —-----------------------  Since I have the basic code I just need to add code so the ins work. I will keep working on the wiring too and hopefully finish all of it.  —-----------------------  I want to now add a motor to the raspberry pi pico so that when a temperature reches a X amount it will turn the motor on, this means I need to change the wiring and add to my software. | Help me put the logic and idea I have in mind and put it into code. |\n| Anthony Guerra |  | I am making a temperature sensor, in order to measure over time the temperature in the room and get the coldest temperature during the night. |  |  |\n| Tobias Fainberg |  | I am doing a sensor that makes a sound when anything gets detected. | Start planning and get some code done. | Building it physically |\n| Timothy Abramov |  | I am making a counter to count how many times, a ball or marble bounces before it stops bouncing |  |  |\n| Mateo Calgaro |  | I am going to use two break beam sensors to measure the speed of an object over a distance of 1 meter, the first beam sensor at the beginning and the second at the end. Then I will get the time and calculate the distance over time to get the final speed in m/s. | Start planning for the coding and wiring necessary to make the beam sensors record the values needed. <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em> Last class I managed to connect the break beam sensor to the metro board, today Ill try to finish the code and make it run. </strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong>___ Last class I managed to get everything to run correctly except for one part of the code, today Ill try to finish correcting the code | Help me figure out which materials are needed and where to get them. |\n| Ethan Mackay |  | Im am going to use a temperature sensor to average the temp in a 24 hour time range , and display it. | Start out with the wiring |  |</p>", "Unit 3 - Metro and Algorithms/U3D8 - Flowchart Analysis Handout.md": "<p>L2 - Flowcharts and Pseudocode                  Name:<strong><em>_</em></strong><strong><em>_</em></strong>____\nFor each flowchart, write out the purpose of the algorithm, and pseudo code for it based on that purpose. Write the number of the algorithm you are analyzing.\n\\</p>\n<p>| Slide #:</p>\n<p>Purpose:</p>\n<table>\n<thead>\n<tr>\n<th>Pseudocode</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Slide #:   Purpose:   Pseudocode</td>\n</tr>\n<tr>\n<td>Slide #:   Purpose:   Pseudocode</td>\n</tr>\n<tr>\n<td>Slide #:   Purpose:   Pseudocode</td>\n</tr>\n</tbody>\n</table>", "Unit 3 - Metro and Algorithms/motor_control_CA.py.md": "<h1>CircuitPython motor + encoder helper for Metro RP2040 + L298N</h1>\n<h1>Drop this as code.py, open Mu's serial console to see counts.</h1>\n<h1>v2.1: Corrected directional logic for clockwise rotation.</h1>\n<p>import time\nimport board\nimport digitalio\nimport pwmio\nimport rotaryio</p>\n<h1>---------- Pin assignments (adjust if you wired differently) ----------</h1>\n<p>PIN_ENA = board.D5     # L298N ENA (PWM)\nPIN_IN1 = board.D6     # L298N IN1\nPIN_IN2 = board.D7     # L298N IN2</p>\n<p>PIN_ENC_A = board.D2   # Encoder channel A\nPIN_ENC_B = board.D3   # Encoder channel B</p>\n<p>PWM_FREQ = 20000       # 20 kHz =&gt; quieter</p>\n<h1>If you know your encoder's counts/rev at x4 (post-quadrature), set it here.</h1>\n<h1>Many Tetrix encoders are 360 CPR (=&gt; 1440 counts/rev at x4).</h1>\n<p>COUNTS_PER_REV = 1440  # adjust as needed for your specific motor/encoder</p>\n<p>class DCMotorL298N:\n    def <strong>init</strong>(self, ena_pin, in1_pin, in2_pin, pwm_freq=20000):\n        self.in1 = digitalio.DigitalInOut(in1_pin)\n        self.in1.direction = digitalio.Direction.OUTPUT\n        self.in2 = digitalio.DigitalInOut(in2_pin)\n        self.in2.direction = digitalio.Direction.OUTPUT</p>\n<pre><code>    self.ena = pwmio.PWMOut(ena_pin, frequency=pwm_freq, duty_cycle=0)\n    self.coast()  # start safe\n\ndef _set_dir(self, forward=True):\n    # IN1=1, IN2=0 -&gt; forward ; IN1=0, IN2=1 -&gt; backward\n    self.in1.value = forward\n    self.in2.value = not forward\n\ndef _set_pwm01(self, x):\n    if x &lt; 0: x = 0\n    if x &gt; 1: x = 1\n    self.ena.duty_cycle = int(65535 * x)\n\ndef forward(self, speed=1.0):\n    self._set_dir(True)\n    self._set_pwm01(speed)\n\ndef backward(self, speed=1.0):\n    self._set_dir(False)\n    self._set_pwm01(speed)\n\ndef coast(self):\n    \"\"\"Outputs OFF (coast).\"\"\"\n    self._set_pwm01(0)        # ENA=0 turns outputs off\n\ndef brake(self, strength=1.0):\n    \"\"\"\n    Active (short) brake: ties both motor leads together.\n    Using LOW/LOW here; HIGH/HIGH also brakes. 'strength' PWM-modulates it.\n    1.0 = hard brake, 0.3 = softer brake.\n    \"\"\"\n    self.in1.value = False     # both low =&gt; short to GND\n    self.in2.value = False\n    self._set_pwm01(strength)\n</code></pre>\n<p>class QuadEncoder:\n    def <strong>init</strong>(self, pin_a, pin_b, counts_per_rev=1440):\n        # divisor=1 -&gt; x4 decoding (max resolution)\n        self._enc = rotaryio.IncrementalEncoder(pin_a, pin_b, divisor=1)\n        self.cpr = counts_per_rev</p>\n<pre><code>@property\ndef counts(self):\n    return self._enc.position\n\ndef reset(self):\n    self._enc.position = 0\n\ndef revolutions(self):\n    return self.counts / float(self.cpr)\n\ndef degrees(self):\n    return self.revolutions() * 360.0\n</code></pre>\n<h1>---------- Instantiate hardware ----------</h1>\n<p>motor = DCMotorL298N(PIN_ENA, PIN_IN1, PIN_IN2, pwm_freq=PWM_FREQ)\nencoder = QuadEncoder(PIN_ENC_A, PIN_ENC_B, counts_per_rev=COUNTS_PER_REV)</p>\n<h1>---------- Student-facing helper functions ----------</h1>\n<p>def forward(speed=1.0):\n    \"\"\"Run motor forward (clockwise) at speed 0..1\"\"\"\n    motor.forward(speed)</p>\n<p>def backward(speed=1.0):\n    \"\"\"Run motor backward (counter-clockwise) at speed 0..1\"\"\"\n    motor.backward(speed)</p>\n<p>def stop():\n    \"\"\"Coast to stop\"\"\"\n    motor.coast()</p>\n<p>def active_brake(strength=1.0):\n    \"\"\"Active brake: 0..1 (1.0 = hard).\"\"\"\n    motor.brake(strength)</p>\n<p>def reset_counts():\n    encoder.reset()</p>\n<p>def get_counts():\n    \"\"\"Return quadrature counts (post-quadrature)\"\"\"\n    return encoder.counts</p>\n<p>def get_degrees():\n    \"\"\"Approx degrees turned (set COUNTS_PER_REV correctly)\"\"\"\n    return encoder.degrees()</p>\n<h1>---------- Demo: jog forward/back, brake, and print encoder ----------</h1>\n<p>if <strong>name</strong> == \"<strong>main</strong>\":\n    reset_counts()\n    target_degrees = 160.0\n    # --- PID Tuning Parameters ---</p>\n<pre><code>kP = 0.05  # Proportional gain: adjusts how motor turns to correct error.\nkI = 0.004   # Integral gain: helps eliminate steady-state error.\nkD = 0.006  # Derivative gain: prevents oscillation and overshoot.\n\n# --- Advanced Control Parameters ---\nintegral_limit = 50.0 # Anti-windup: Prevents the integral term from becoming excessively large.\ndeadband_degrees = 2.0 # Degrees near target to stop motor to prevent oscillation.\nmin_power = 0.15       # Minimum power to overcome initial motor stickiness (stiction).\n\n# --- PID Loop Variables ---\nlast_error = 0\nintegral = 0\nlast_time = time.monotonic()\n\n# this overcomes motor stickiness\nforward(0.6)\ntime.sleep(0.05)\nstop()\nstart_time = time.monotonic()\n\nwhile True:\n    current_time = time.monotonic()\n    if(current_time - start_time) &gt; 10.0:\n        target_degrees = 0\n    dt = current_time - last_time\n\n    if dt == 0: continue # Prevent division by zero on the first loop\n    last_time = current_time\n\n    # Get the encoder reading\n    current_degrees = -get_degrees()\n\n    # calculate error\n    error = target_degrees - current_degrees\n\n    # add motor power that is proportional to the error\n    p_term = kP * error\n\n    # add motor power that is in the opposite direction to the change. this decreases acceleration\n    derivative = (error - last_error) / dt\n    d_term = kD * derivative\n    last_error = error\n\n    # this reduces steady state error - being off by a little bit over time.\n    integral += error * dt\n    integral = max(-integral_limit, min(integral, integral_limit)) # Clamp the integral\n    i_term = kI * integral\n\n\n\n    # Total motor power is the sum of these things\n    motor_power = p_term + i_term + d_term\n\n    # --- Motor Control Logic ---\n    # Deadband: If we are very close to the target, just stop.\n    if abs(error) &lt; deadband_degrees:\n        stop()\n        integral = 0 # Reset integral to prevent windup when stopped\n        motor_power = 0\n    else:\n        # Apply minimum power to overcome friction\n        if abs(motor_power) &gt; 0 and abs(motor_power) &lt; min_power:\n            motor_power = min_power if motor_power &gt; 0 else -min_power\n\n        # keep the motor power to the valid range [-1.0, 1.0]\n        motor_power = max(-1.0, min(1.0, motor_power))\n\n    if motor_power &gt; 0:\n        backward(motor_power)  # Swapped from forward()\n    else:\n        forward(abs(motor_power)) # Swapped from backward()\n\n    print(f\"Target: {target_degrees:.1f}, Current: {current_degrees:.1f}, Error: {error:.1f}, Power: {motor_power:.2f}\")\n    time.sleep(0.02) # Loop delay\n</code></pre>", "Unit 3 - Metro and Algorithms/Week 16 Resources/Button Press Challenge Code.md": "<p>import time\nimport board\nimport digitalio\nimport pwmio</p>\n<h1>optional servo library</h1>\n<p>from adafruit_motor import servo</p>\n<h1>Pins</h1>\n<p>BUTTON_PIN = board.D5\nLED_PIN    = board.D13\nSERVO_PIN  = board.D6    # example</p>\n<h1>--- INPUT SETUP ---</h1>\n<p>button = digitalio.DigitalInOut(BUTTON_PIN)\nbutton.direction = digitalio.Direction.INPUT\nbutton.pull = digitalio.Pull.UP</p>\n<h1>--- OUTPUT SETUP ---</h1>\n<p>led = pwmio.PWMOut(LED_PIN, frequency=5000, duty_cycle=0)\nservo_pwm = pwmio.PWMOut(SERVO_PIN, frequency=50)\nmy_servo = servo.Servo(servo_pwm)</p>\n<h1>--- STATES ---</h1>\n<p>OFF        = 0\nLOW_POWER  = 1\nHIGH_POWER = 2</p>\n<p>state = OFF</p>\n<h1>--- STATE OUTPUT FUNCTIONS ---</h1>\n<p>def output_off():\n    \"\"\"Everything off: LED off, servo to 0°.\"\"\"\n    led.duty_cycle = 0\n    my_servo.angle = 0\n    print(\"→ OFF: LED off, servo at 0°\")</p>\n<p>def output_low_power():\n    \"\"\"Dim LED, servo to mid-position.\"\"\"\n    led.duty_cycle = int(0xFFFF * 0.2)  # ~20% brightness\n    my_servo.angle = 90\n    print(\"→ LOW_POWER: LED dim, servo at 90°\")</p>\n<p>def output_high_power():\n    \"\"\"Bright LED, servo to max-position.\"\"\"\n    led.duty_cycle = 0xFFFF\n    my_servo.angle = 180\n    print(\"→ HIGH_POWER: LED bright, servo at 180°\")</p>\n<h1>--- HELPER: UPDATE OUTPUT FOR CURRENT STATE ---</h1>\n<p>def update_outputs():\n    if state == OFF:\n        output_off()\n    elif state == LOW_POWER:\n        output_low_power()\n    elif state == HIGH_POWER:\n        output_high_power()</p>\n<h1>--- EVENT HANDLERS ---</h1>\n<p>def button_pressed_short():\n    global state\n    if state == LOW_POWER:\n        state = HIGH_POWER\n    elif state == HIGH_POWER:\n        state = LOW_POWER\n    else:\n        # short press in OFF does nothing\n        return\n    update_outputs()</p>\n<p>def button_pressed_long():\n    global state\n    if state == OFF:\n        state = LOW_POWER\n    else:\n        # long press in LOW_POWER or HIGH_POWER turns OFF\n        state = OFF\n    update_outputs()</p>\n<h1>--- INITIAL OUTPUT ---</h1>\n<p>update_outputs()</p>\n<h1>--- MAIN LOOP: DEBOUNCE &amp; DURATION CHECK ---</h1>\n<p>while True:\n    if not button.value:          # button pressed (active-low)\n        t0 = time.monotonic()\n        while not button.value:\n            pass\n        duration = time.monotonic() - t0</p>\n<pre><code>    if duration &gt;= 2.0:\n        button_pressed_long()\n    elif 0.2 &lt;= duration &lt;= 1.0:\n        button_pressed_short()\n    else:\n        print(f\"Ignored press ({duration:.2f}s)\")\ntime.sleep(0.01)\n</code></pre>", "Unit 1 - micro_bit and Events/L2 - Responding to Events - micro_bit events.md": "<p>Name:</p>\n<p>Use the micro:bit code to the right to answer the questions below.</p>\n<p>Look at the code. Find the lines that run when events occur on or to the micro:bit. Circle those lines.</p>\n<p>Pick two of the lines you circled. Answer the questions below about those two lines. You can give each one you picked a number, 1 and 2.\n1\nWhat event in real life  makes this line of code run? (Example: pressing the micro:bit logo)</p>\n<p>After the event, what happens? Explain exactly what the code does.</p>\n<p>2\nWhat event in real life makes this line of code run?</p>\n<p>After the event, what happens? Explain exactly what the code does.</p>\n<p>Name:</p>\n<p>Use the micro:bit code to the right to answer the questions below.</p>\n<p>Look at the code. Find the lines that run when events occur on or to the micro:bit. Circle those lines.</p>\n<p>Pick two of the lines you circled. Answer the questions below about those two lines. You can give each one you picked a number, 1 and 2.\n1\nWhat event in real life makes this line of code run? (Example: pressing the micro:bit logo)</p>\n<p>After the event, what happens? Explain exactly what the code does.</p>\n<p>2\nWhat event in real life makes this line of code run?</p>\n<p>After the event, what happens? Explain exactly what the code does.</p>\n<p>Name:</p>\n<p>Use the micro:bit code to the right to answer the questions below.</p>\n<p>Look at the code. Find the lines that run when events occur on or to the micro:bit. Circle those lines.</p>\n<p>Pick two of the lines you circled. Answer the questions below about those two lines. You can give each one you picked a number, 1 and 2.\n1\nWhat event in real life makes this line of code run? (Example: pressing the micro:bit logo)</p>\n<p>After the event, what happens? Explain exactly what the code does.</p>\n<p>2\nWhat event in real life makes this line of code run?</p>\n<p>After the event, what happens? Explain exactly what the code does.</p>\n<p>Name:</p>\n<p>Use the micro:bit code to the right to answer the questions below.</p>\n<p>Look at the code. Find the lines that run when events occur on or to the micro:bit. Circle those lines.</p>\n<p>Pick two of the lines you circled. Answer the questions below about those two lines. You can give each one you picked a number, 1 and 2.\n1\nWhat event in real life makes this line of code run? (Example: pressing the micro:bit logo)</p>\n<p>After the event, what happens? Explain exactly what the code does.</p>\n<p>2\nWhat event in real life makes this line of code run?</p>\n<p>After the event, what happens? Explain exactly what the code does.</p>", "Unit 1 - micro_bit and Events/L3 - Responding to Events - micro_bit code analysis.md": "<h3>Micro:bit Event Analysis Activity</h3>\n<p><strong>Introduction:</strong> You used Gemini to create a micro:bit program for your iterations project. This activity will help you become an expert on how this code works. By analyzing the code you already created, you will be able to show that you understand how to write code that responds to different events.\nTo begin, get the final code you used for the W3-2 Iterations activity. You should be able to get this from your chat with Gemini. Paste the code from this chat into the code editor.\n<strong>Task 1: Identify and Label Events</strong>\nOpen your final micro:bit project code for your iterations project . \nLook for any parts of the code that are listening for something to happen. These are called <strong>event handlers</strong>. They are waiting for an event to occur, such as a button press or a sensor activation.\n<strong>Find the event handlers:</strong> Go through your code line by line and find the sections that are waiting for an event. These often start with an if statement or a specific function call like on_button_pressed.\n<strong>Label your code:</strong> In the comments of your code, write a clear, descriptive label next to each event handler. For example, if a section of code runs when button A is pressed, add a comment like # Event: Button A is pressed.\n<strong>Task 2: Explain Your Code</strong>\nNow that you've identified the events, let's explain what happens when they occur.\nFor each of the events you found, create a simple analysis in your own words in the table below. For each event, answer the following two questions:\n<strong>What is the real-world event?</strong> Describe in plain language what a person needs to do to make this part of the code run. (e.g., \"Pressing and holding the 'A' button on the micro:bit.\")\n<strong>What is the program's response?</strong> Explain exactly what the code does after the event occurs. Be specific about the output (e.g., \"The micro:bit displays a heart image on its LED screen and plays a sound\").</p>\n<p><strong>Task 3: Make a Simple Change</strong>\nThis task is designed to show you can actively control how your code responds to an event.\n<strong>Choose one event handler from your code.</strong>\n<strong>Change the response:</strong> Modify the code so that when that event occurs, the micro:bit does something different than it did before. For example, if pressing a button used to show a skull, change it to show a happy face instead.\n<strong>Explain the change:</strong> In a comment next to your new code, explain what the original program did, what the new program does, and how you made the change.</p>\n<p>To demonstrate your understanding, create a short screencast (2-4 minutes) where you:\nShow your commented code on your screen.\nWalk through each event handler you identified in Task 1.\nFor each event, explain the \"real-world event\" and the \"program's response\" as you described in Task 2.\nShow a working simulation of your micro:bit code (where possible) and demonstrate each event happening in the simulation.This will show Mr. Weinberg that your code and your explanation are correct.\nChoose one event and make a change to the code (as you did in Task 3). Explain what the code will do differently. Show that when the code runs on the simulator, the response of the micro:bit changes as you predicted.\n<strong>Submission:</strong> Submit this file with your table AND a link to your screencast from Google Drive.</p>\n<p>| Event Trigger Code:</p>\n<table>\n<thead>\n<tr>\n<th>(paste code below)</th>\n<th>What is the real world that causes this event in your code?</th>\n<th>Explain exactly how the micro:bit controls inputs, outputs, or variables after the event occurs</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td></td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td></td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td></td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td></td>\n<td></td>\n<td></td>\n</tr>\n</tbody>\n</table>\n<table>\n<thead>\n<tr>\n<th>1.0 - With help, partial understanding</th>\n<th>1.5 - Partial understanding</th>\n<th>2.0 - Foundational understanding</th>\n<th>2.5 - Developing understanding</th>\n<th>3.0 - Proficient understanding</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>• With significant help, you can identify at least one part of the code that is listening for an event.</td>\n<td>• You can identify some of the event handlers in your code but may miss some or confuse them with if/else statements that are not triggered by a specific event.</td>\n<td>• You identify and label the different event handlers in your code, such as on_button_pressed. • You can explain what happens when different events occur in your code.  • You successfully make a simple change to one event's response, showing you can modify the program's behavior.</td>\n<td>• You meet all the criteria for a score of 2.0.  • You clearly demonstrate a deeper understanding of how the code responds to events, including the difference between an event and a simple <code>if/else</code> statement.  • Your explanations of the code's response are detailed and specific.</td>\n<td>• Your code correctly responds to different events as intended. • Your screencast clearly shows what events are happening and what the program does in response.  • You can handle different types of events within your code (e.g., button presses, gestures, light sensor changes).</td>\n</tr>\n</tbody>\n</table>", "Unit 1 - micro_bit and Events/W0-1 - RVR Challenge - Team Code.md": "<p>commands = [\n    (\"W\", 1.5),\n    (\"D\", 0.5),\n    (\"W\", 3)\n]</p>\n<p>Iteration 0: wrong quote marks used in code</p>\n<table>\n<thead>\n<tr>\n<th>Team Members</th>\n<th>Code Trial 1 (paste entire commands list below)</th>\n<th>Code Trial 2</th>\n<th>Code Trial 3</th>\n<th>Code Trial 4</th>\n<th>Code Trial 5</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Santiago, Sebastian, Pipe</td>\n<td>commands = [    (\"W\", 1.3),     (\"D\",  0.55),     (\"W\", 5),     (\"D\", 0.455),     (\"W\",3 ),     (\"D\", 0.55),     (\"W\", 2),     (\"D\", 0.6),     (\"W\", 1.45),     (\"A\", 0.67),      (\"W\", 3), ]</td>\n<td>commands = [    (\"W\", 1.3),     (\"D\",  0.55),     (\"W\", 5),     (\"D\", 0.55),     (\"W\",4 ),     (\"D\", 0.55),     (\"W\", 3.3),     (\"D\", 0.6),     (\"W\", 1.5),     (\"A\", 0.55),      (\"W\", 3), ]</td>\n<td>commands = [     (\"W\", 1.3),     (\"D\",  0.56),     (\"W\", 5),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\", 1.45),     (\"A\", 0.505),      (\"W\", 2.8), ]</td>\n<td>commands = [     (\"W\", 1.3),     (\"D\",  0.559),     (\"W\", 5),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\",2.45),     (\"A\", 0.49),      (\"W\", 2.8), ]</td>\n<td>commands = [     (\"W\", 1.3),     (\"D\",  0.559),     (\"W\", 5),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\",2.7),     (\"A\", 0.41),      (\"W\", 2.5), ]</td>\n</tr>\n<tr>\n<td>Ethan, Mateo, Rodrigo</td>\n<td>commands = [     (\"W\", 1.3),     (\"D\",  0.559),     (\"W\", 5),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\", 1.45),     (\"A\", 0.32),      (\"W\", 3), ]</td>\n<td>commands = [     (\"W\", 1.3),     (\"D\",  0.559),     (\"W\", 5),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\", 1.24),     (\"A\", 0.49),      (\"W\", 2.7),]</td>\n<td>commands = [     (\"W\", 1.3),     (\"D\",  0.559),     (\"W\", 5),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\", 1.4),     (\"A\", 0.49),      (\"W\", 2.65),]</td>\n<td>commands = [     (\"W\", 1.3),     (\"D\",  0.559),     (\"W\", 5),     (\"D\", 0.57),     (\"W\", 2.8),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\", 1.4),     (\"A\", 0.49),      (\"W\", 2.67),]</td>\n<td></td>\n</tr>\n<tr>\n<td>Anthony Joao Nico</td>\n<td>commands = [    (\"W\", 1.3),     (\"D\",  0.55),     (\"W\", 5),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\", 1.45),     (\"A\", 0.3),      (\"W\", 3), ]</td>\n<td>commands = [    (\"W\", 1.3),     (\"D\",  0.55),     (\"W\", 5),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\", 1.45),     (\"A\", 0.28),      (\"W\", 2), ]</td>\n<td>commands = [    (\"W\", 1.3),     (\"D\",  0.55),     (\"W\", 5),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\", 1.75),     (\"A\", 0.4),      (\"W\", 2.25), ]</td>\n<td>commands = [     (\"W\", 1.3),     (\"D\",  0.559),     (\"W\", 5),     (\"D\", 0.57),     (\"W\", 2.8),     (\"D\", 0.55),     (\"W\", 3),     (\"D\", 0.6),     (\"W\", 1.7),     (\"A\", 0.6),      (\"W\", 2.3),]</td>\n<td></td>\n</tr>\n<tr>\n<td>Danny, Dani, Tim, Finn</td>\n<td>commands = [     (\"W\", 1.4),     (\"D\", 0.555),     (\"W\", 5),     (\"D\", 0.555),     (\"W\", 3.2),     (\"D\", 0.555),     (\"W\", 3.1),     (\"W\", 1),     (\"A\", 0.555),     (\"W\", 2), ]</td>\n<td>commands = [     (\"W\", 1.4),     (\"D\", 0.555),     (\"W\", 5),     (\"D\", 0.555),     (\"W\", 3.2),     (\"D\", 0.555),     (\"W\", 3.1),     (\"W\", 2),     (\"A\", 0.555),     (\"W\", 2), ]</td>\n<td>commands = [     (\"W\", 1.4),     (\"D\", 0.555),     (\"W\", 5),     (\"D\", 0.555),     (\"W\", 3.2),     (\"D\", 0.555),     (\"W\", 3.1),     (\"D\", 0.6),     (\"W\", 2),     (\"A\", 0.555),     (\"W\", 2.44), ]</td>\n<td>Commands = [     (\"W\", 1.4),     (\"D\", 0.55),     (\"W\", 5),     (\"D\", 0.55),     (\"W\", 3.2),     (\"D\", 0.55),     (\"W\", 3.1),     (\"D\", 0.6),     (\"W\", 2),     (\"A\", 0.55),     (\"W\", 2.44), ]</td>\n<td></td>\n</tr>\n<tr>\n<td></td>\n<td></td>\n<td></td>\n<td></td>\n<td></td>\n<td></td>\n</tr>\n</tbody>\n</table>", "Unit 1 - micro_bit and Events/W1-3 - micro_bit events catalog.md": "<p>Try to find a new event to add to this list for the micro:bit</p>\n<p>| Event Name | Description\n“If [sensor value is X, button is pressed, micro:bit is shaken], then [show a heart, display a number, play a sound] | Example Code |\n| --- | --- | --- |\n| if button_b.is_pressed(): | If button b is pressed then play the FUNERAL track | if button_b.is_pressed():         music.play(music.FUNERAL) |\n| if button_b.is_pressed(): | If button b is pressed, then show the light level sensed | if button_b.is_pressed():         display.scroll(display.read_light_level()) |\n| if button_a.was_pressed():         display.scroll('A') | If button a is pressed, then play the flight of the bumblebee. |  |\n| if pin_logo.is_touched(): | If the pin logo is touched then the volume will be set to max and then the lights will form the number 6 then it is followed by number 7, after this it will say six seven. | if pin_logo.is_touched():                     set_volume(250)                     display.scroll('67')                     speech.say('six seven') |\n| if button_b.was_pressed | If button B was pressed, play the following notes |  |\n| if button_a.is_pressed() and button_b.is_pressed(): | If both button A and B are pressed, it will display a heart | if button_a.is_pressed() and button_b.is_pressed():         display.show(Image.HEART_SMALL) |\n| if button_b.is_pressed(): | If button B is pressed a FUNK song with low volume will be played, while if A is pressed the same song will play with way higher volume. | while True:     if button_b.is_pressed():         set_volume(100)         music.play(music.FUNK)     if button_a.is_pressed():         set_volume(1000)         music.play(music.FUNK) |\n| if button_a.was_pressed(): | If button A is pressed then it plays a ba ding sound | while True:     if button_a.was_pressed():         display.scroll('A')         music.play(music.BA_DING) |\n| if button_a.was_pressed(): | If button B is pressed then show a question mark symbol. | while True:  if button_a.was_pressed(): display.show('?') |\n| if microphone.current_event() == SoundEvent.LOUD: | If there is a loud sound, display a happy face for 1.5 seconds, if there is not a loud sound, show the asleep face. | if microphone.current_event() == SoundEvent.LOUD:         display.show(Image.HAPPY)         sleep(1500)     elif microphone.current_event() == SoundEvent.QUIET:         display.show(Image.ASLEEP)while True:     set_volume(150)     if button_a.was_pressed():         music.play(music.PRELUDE) |\n| If button_a is Pressed(): | If Button A is pressed then show the image from the graph | while True:     if button_a.was_pressed():              display.show(Image('00900:'                        '00900:'                        '00900:'                        '09990:'                        '00900'))         sleep(500) |\n| If button_a.is_pressed(): | If button a is pressed play a melody | if button_a.is_pressed():             music.play(['a'])             music.play(['a'])             music.play(['f'])             music.play(['a'])             music.play(['e'])             music.play(['f']) |\n| if display.read_light_level() &gt; 200: | When the LED are placed on the sun it will display a heart image, but if not it will be clear. | if display.read_light_level() &gt; 200:         display.show(Image.HEART)     else:         display.clear() |</p>", "Unit 2 - Functions/L2 - Functions Calling and Testing_.md": "<h1>L2 Functions</h1>\n<p><strong>Instructions:</strong> Fill in the blank space in each row. Sometimes you will need to write the <code>Expected Output</code>, and other times you will need to write the <code>Try This</code> function call that produces the given output.</p>\n<h3>Function Descriptions:</h3>\n<p><code>returnNumCharacters(word)</code>: Returns the number of characters in the input text.\n<code>removeVowels(string)</code>: Removes all vowels (<code>a, e, i, o, u</code>) from a string.\n<code>combineText(text1, text2)</code>: Joins two pieces of text together with a space in between.</p>\n<h1>L2 Functions</h1>\n<p><strong>Instructions:</strong> Fill in the blank space in each row. Sometimes you will need to write the <code>Expected Output</code>, and other times you will need to write the <code>Try This</code> function call that produces the given output.</p>\n<h3>Function Descriptions:</h3>\n<p><code>returnNumCharacters(word)</code>: Returns the number of characters in the input text.\n<code>removeVowels(string)</code>: Removes all vowels (<code>a, e, i, o, u</code>) from a string.\n<code>combineText(text1, text2)</code>: Joins two pieces of text together with a space in between.</p>\n<h1>L2 Functions</h1>\n<p><strong>Instructions:</strong> Fill in the blank space in each row. Sometimes you will need to write the <code>Expected Output</code>, and other times you will need to write the <code>Try This</code> function call that produces the given output.</p>\n<h3>Function Descriptions:</h3>\n<p><code>returnNumCharacters(word)</code>: Returns the number of characters in the input text.\n<code>removeVowels(string)</code>: Removes all vowels (<code>a, e, i, o, u</code>) from a string, ignoring case.\n<code>combineText(text1, text2)</code>: Joins two pieces of text together with a space in between.</p>\n<h1>L2 Functions</h1>\n<p><strong>Instructions:</strong> Fill in the blank space in each row. Sometimes you will need to write the <code>Expected Output</code>, and other times you will need to write the <code>Try This</code> function call that produces the given output.</p>\n<h3>Function Descriptions:</h3>\n<p><code>returnNumCharacters(word)</code>: Returns the number of characters in the input text.\n<code>removeVowels(string)</code>: Removes all vowels (<code>a, e, i, o, u</code>) from a string, ignoring case.\n<code>combineText(text1, text2)</code>: Joins two pieces of text together with a space in between.</p>\n<table>\n<thead>\n<tr>\n<th>Try This (Your Input)</th>\n<th>Expected Output</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>returnNumCharacters(\"computer\")</code></td>\n<td></td>\n</tr>\n<tr>\n<td><code>returnNumCharacters( )</code></td>\n<td><code>12</code></td>\n</tr>\n<tr>\n<td><code>removeVowels(\"This is a test\")</code></td>\n<td></td>\n</tr>\n<tr>\n<td><code>removeVowels( )</code></td>\n<td><code>'Fnctn Fn'</code></td>\n</tr>\n<tr>\n<td><code>combineText(\"first\", \"last\")</code></td>\n<td></td>\n</tr>\n<tr>\n<td><code>combineText( , )</code></td>\n<td><code>'The answer is 42'</code></td>\n</tr>\n</tbody>\n</table>\n<table>\n<thead>\n<tr>\n<th>Try This (Your Input)</th>\n<th>Expected Output</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>returnNumCharacters(\"excellent\")`</td>\n<td></td>\n</tr>\n<tr>\n<td>returnNumCharacters(                      )<code>|</code>5`</td>\n<td></td>\n</tr>\n<tr>\n<td>removeVowels(\"troubleshooting\")`</td>\n<td></td>\n</tr>\n<tr>\n<td>removeVowels(                            )</td>\n<td><code>'Mcrbt'</code></td>\n</tr>\n<tr>\n<td>combineText(\"Ready\", \"Player\")`</td>\n<td></td>\n</tr>\n<tr>\n<td><code>combineText(                  ,                        )</code></td>\n<td><code>'Final Score: 100'</code></td>\n</tr>\n</tbody>\n</table>\n<table>\n<thead>\n<tr>\n<th>Try This (Your Input)</th>\n<th>Expected Output</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>returnNumCharacters(\"It's 100 degrees!\")`</td>\n<td></td>\n</tr>\n<tr>\n<td>returnNumCharacters(               )</td>\n<td><code>1</code></td>\n</tr>\n<tr>\n<td>removeVowels(\"WHY IS IT YELLING?\")</td>\n<td></td>\n</tr>\n<tr>\n<td>removeVowels(                             )</td>\n<td><code>'ND D GLS'</code></td>\n</tr>\n<tr>\n<td>combineText(\"Player\", \"One\")</td>\n<td></td>\n</tr>\n<tr>\n<td><code>combineText(                           ,                          ) |</code>'The final score is: 250'`</td>\n<td></td>\n</tr>\n</tbody>\n</table>\n<table>\n<thead>\n<tr>\n<th>Try This (Your Input)</th>\n<th>Expected Output</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><code>returnNumCharacters(\"collaboration\")</code></td>\n<td></td>\n</tr>\n<tr>\n<td><code>returnNumCharacters(                  )</code></td>\n<td><code>8</code></td>\n</tr>\n<tr>\n<td><code>removeVowels(\"input and output\")</code></td>\n<td></td>\n</tr>\n<tr>\n<td><code>removeVowels( )</code></td>\n<td><code>'th qck brwn fx'</code></td>\n</tr>\n<tr>\n<td><code>combineText(\"Hello\", \"World\")</code></td>\n<td></td>\n</tr>\n<tr>\n<td><code>combineText( , )</code></td>\n<td><code>'micro:bit is fun'</code></td>\n</tr>\n</tbody>\n</table>", "Unit 2 - Functions/L3 - Functions & Modular Code - Function Writing.md": "<h2>Project: The Smart Sensor</h2>\n<p>We’ve been working on using and calling functions on the micro:bit, with AI taking some of the role of writing the code for us. Today you are going to do the writing, and AI is going to work as your learning guide to get \nOur goal is to write a program that reads data from a sensor, decides what that data means, and then tells us about it. </p>\n<p>Note: Elements of this assignment were generated with Gemini, but later edited by Mr. Weinberg to match our learning goals for the course. </p>\n<h3>The Workflow: Your \"Code-Test-Reflect\" Loop</h3>\n<p>Today we are training ourselves to be expert debuggers.\n<strong>Write in Google Docs:</strong> You will do all your coding and editing in this Google Doc. This lets us track our changes and think about our code away from the \"run\" button.\n<strong>Test in Mu:</strong> When you're ready to test, you will <strong>copy</strong> your entire code from the Google Doc and <strong>paste</strong> it into the Mu editor. Flash it to your micro:bit and see what happens. <strong>Do not edit the code in Mu.</strong>\n<strong>Hit an Error? Perfect!</strong> Errors are learning opportunities. When you get one, <strong>copy your code AND the error message</strong> and take it to our \n<strong>Get a Hint, Not an Answer:</strong> The AI will not fix your code. It will ask you questions and give you hints. Your job is to use those hints to figure out the solution.\n<strong>Return and Revise:</strong> Go back to your Google Doc, apply what you've learned to fix your code, and then repeat the cycle from Step 2.</p>\n<h3>Your Mission: Build Three Functions 🛠️</h3>\n<p>You'll be modifying the starter code to use three functions that you write yourself. You can choose to use the light sensor, accelerometer (accelerometer.get_x()), or compass (compass.heading()).</p>\n<h1>Code Editing block</h1>\n<p>You should do all code editing in the block below. This is a code block and will allow you to write Python code without having issues with tabs or autocorrect. I will be looking at this section to see how you iterate over time.\n# Write and edit all of your code in this block and above the horizontal line. You should be writing three functions: read_sensor(), categorize_value(raw_data), and display_results(raw_data, category).</p>\n<h4>DO NOT EDIT CODE BELOW THIS LINE</h4>\n<h1>Import the microbit library</h1>\n<p>from microbit import *\nwhile True:\n    raw_data = read_sensor()\n    category = categorize_value(raw_data)\n    display_results(raw_data, category)\n    sleep(200) # Wait a little before the next reading</p>\n<p></p>\n<h4>Part 1: The Reader Function</h4>\n<p>Create a function named read_sensor that takes no arguments and returns the raw value from the sensor you chose.\nIt should look something like: def read_sensor():\nInside, it will read the sensor.\nThe last line will be return the_value_you_read.</p>\n<h4>Part 2: The Categorizer Function</h4>\n<p>Create a function named categorize_value that takes one argument (the sensor data from Part 1). This function will use if/elif/else logic to decide which of three categories the value falls into and return a string (e.g., \"dark\", \"normal\", \"bright\").\nExample for light: dark (&lt; 50), normal (50-200), bright (&gt; 200).\nExample for accelerometer X-axis: tilted left (&lt; -200), level (-200 to 200), tilted right (&gt; 200).</p>\n<h4>Part 3: The Display Function</h4>\n<p>Create a function named display_results that takes two arguments: the raw sensor value and the category string. This function's only job is to print the information in a clean, human-readable format. It does not need to return anything.\nExample output: Raw Value: 150 -- Category: normal</p>\n<h3>Putting It All Together</h3>\n<p>Once you have written your three functions, your while True: loop will become very simple and clean. It will call your functions in order to get the job done.\n\nwhile True:\n    raw_data = read_sensor()\n    category = categorize_value(raw_data)\n    display_results(raw_data, category)\n    sleep(200) # Wait a little before the next reading</p>\n<h3></h3>\n<h3>Warmup: Starter Code</h3>\n<p>Let's all start from the same place. Download this code to your micro:bit using the Mu editor. This is the code we will be refactoring (reorganizing) into our three functions.\n</p>\n<h1>Write your code here :-)</h1>\n<h1>Import the microbit library</h1>\n<p>from microbit import *</p>\n<h1>Create an infinite loop to continuously read the sensor</h1>\n<p>while True:\n    # Read the light level from the display sensor (0=dark, 255=bright)\n    light_value = display.read_light_level()</p>\n<pre><code># Print the value to the REPL (the console in Mu)\nprint((light_value,))\n\n# Wait for 0.2 seconds (200 milliseconds) before the next reading\nsleep(200)\n</code></pre>\n<p></p>\n<h1>Final Conversation with Gemini</h1>\n<p>Paste your entire conversation with Gemini in the space below. I want to see how you develop the functions over time, and manage the errors. This will be the final step in Revision History that I see.</p>", "Unit 2 - Functions/L4 - Functions - Virtual Robot Programming.md": "<h1>Virtual Robotics Challenge: The Power of Functions</h1>\n<p>In this task, you will program a virtual robot to navigate challenges and create designs. The primary goal is not just to complete a task, but to demonstrate your understanding of how to use <strong>functions</strong> to write clean, organized, and powerful code.\nThis project is your opportunity to show what you know about breaking down complex problems into smaller, manageable pieces.</p>\n<h2>1. Your Mission: Choose a Challenge</h2>\n<p>Select <strong>one</strong> of the following challenges to solve. Think about which project best allows you to demonstrate your skills. You also have the option to design your own challenge.</p>\n<h4>Challenge A: The Polygon Artist</h4>\n<p>Write a single, smart function that can draw any regular polygon (triangle, square, pentagon, etc.).\n<strong>Goal:</strong> Create a function called draw_polygon(sides, side_length).\n<strong>Inputs:</strong> The function must accept the number of sides and the side_length as parameters.\n<strong>Demonstrates:</strong> Using parameters to create flexible, reusable code. You will need to calculate the correct angle to turn for any given number of sides.</p>\n<h4>Challenge B: The School Spirit Writer</h4>\n<p>Write a program that uses the robot's pen to draw the letters of our school's name: <strong>NIDO</strong>.\n<strong>Goal:</strong> Create a separate function for each letter: draw_N(), draw_I(), draw_D(), draw_O(). Then, write a main function write_nido() that calls these functions in order to write the full name.\n<strong>Demonstrates:</strong> Breaking a large problem (\"write NIDO\") into smaller, function-sized pieces and then combining those functions to solve the problem.</p>\n<h4>Challenge C: The Balloon Popper</h4>\n<p>Switch to the \"Slash Map\" and write a program to navigate the robot to pop all three balloons.\n<strong>Goal:</strong> Write a set of functions that work together to guide the robot from its starting point to each balloon. For example, you might create functions like go_to_first_balloon(), go_to_second_balloon(), etc.\n<strong>Demonstrates:</strong> Using functions to manage a more complex, sequential task. This challenge involves careful planning of turns and movements.</p>\n<h4>Challenge D: The Open Challenge</h4>\n<p>Design your own challenge! It must be complex enough to require multiple functions. Discuss your idea with your teacher before you begin.\n<strong>Examples:</strong> Write a function that draws a shape based on user input, create a program to navigate the \"Number Grid\" map and trace a path, or design a reusable library of navigation functions (e.g., turn_right_90(), turn_left_90(), move_one_square()).\n<strong>Demonstrates:</strong> Advanced planning, creativity, and the ability to design a modular system from scratch.</p>\n<h2>2. How This Connects to Your Proficiency</h2>\n<p>This project is designed to let you show your skills at different levels. Here’s what demonstrating each level looks like in this project:\n<strong>Level 2.0 (Getting Started):</strong>\nYou can correctly call the robot's built-in commands (e.g., drivetrain.drive_for()).\nYou can write a simple function to perform a basic task, like drawing a square.\n<strong>Level 3.0 (Core Proficiency):</strong>\nYou successfully break down your chosen challenge into several well-designed functions.\nYour functions use parameters and/or return values where appropriate.\nYou document your functions, explaining their purpose, inputs, and outputs in your Design Report.\n<strong>Level 4.0 (Advanced Application):</strong>\nYou create highly reusable and efficient functions (like the draw_polygon function).\nYou create a collection of functions that work together as a cohesive system to solve a complex problem.\nYou might explore advanced concepts, like having functions call other functions to create more complex behaviors.</p>\n<h2>3. Getting Started: Your First Function</h2>\n<p>Before diving into your main challenge, let's warm up. Here is a simple example of a function that draws a square. You can use this as a starting point.\nOpen the.\nReview the <strong>Command Reference</strong> on the right-hand side to see what the robot can do.\nTry running this code in the editor!\n# A simple function to draw a square with a given side length\ndef draw_square(size):\n    \"\"\"\n    Draws a square by driving and turning four times.\n    Input: size (int) - the length of each side in pixels.\n    Output: None\n    \"\"\"\n    print(\"Starting to draw a square!\")\n    drivetrain.pen_down()\n    for _ in range(4):\n        drivetrain.drive_for(size)\n        drivetrain.turn_for(90)\n    drivetrain.pen_up()\n    print(\"Square complete!\")</p>\n<h1>--- Main Program ---</h1>\n<h1>This is where you call your functions to run them.</h1>\n<p>draw_square(100)\ndrivetrain.drive_for(150) # Move out of the way\ndraw_square(50)</p>\n<h2>4. Final Deliverable: The Design Report</h2>\n<p>After completing your programming challenge, you will present your work in a Design Report. This report explains how you used functions to build your solution. Use the following template to create your report.</p>\n<h3>Design Report: Functions and Modular Programming</h3>\n<h4>1. Project Overview &amp; Problem</h4>\n<p><strong>Which challenge did you choose?</strong> (e.g., Polygon Artist, Balloon Popper, etc.)\n<strong>What was the main problem you were trying to solve?</strong> (e.g., \"I needed to create a program that could pop all the balloons on the Slash Map.\")</p>\n<h4>2. Breaking Down the Problem</h4>\n<p><strong>How did you break your problem down into smaller tasks?</strong> (e.g., \"To pop all balloons, I first needed to get to the first balloon, then turn and find the second, and so on.\")\n<strong>How did you decide which tasks should become functions?</strong> (e.g., \"I made a function for each major part of the path, like Maps_corner().\")</p>\n<h4>3. Function Showcase</h4>\n<p>For <strong>each</strong> major function you created, provide the following:\n<strong>Function Name:</strong> e.g., draw_polygon\n<strong>Purpose:</strong> What is this function supposed to do?\n<strong>Inputs (Parameters):</strong> What information does it need to work? If none, write \"None\".\n<strong>Outputs (Return Values):</strong> What useful information does it give back? If none, write \"None\".\n<strong>Code Snippet:</strong> Paste your Python code for the function here.\n<em>Example:</em>\n<em></em># Function Name: draw_square</p>\n<h1>Purpose: Draws a square with a specified side length.</h1>\n<h1>Inputs: size (the length of each side).</h1>\n<h1>Outputs: None.</h1>\n<p>def draw_square(size):\n    drivetrain.pen_down()\n    for _ in range(4):\n        drivetrain.drive_for(size)\n        drivetrain.turn_for(90)\n    drivetrain.pen_up()</p>\n<h4>4. How Your Functions Work Together</h4>\n<p><strong>Show the \"main\" part of your program</strong> where you call your functions to solve the challenge.\n<strong>Explain how the functions are called in order.</strong> Did any of your functions call other functions?</p>\n<h4>5. Testing</h4>\n<p><strong>How did you test your functions</strong> to make sure they worked correctly? (e.g., \"I tested draw_polygon with 3, 4, 5, and 8 sides to make sure the math was right.\")\n<strong>Did you find any bugs?</strong> How did you fix them?</p>\n<h4>6. Reflection</h4>\n<p><strong>How did using functions make your code clearer or easier to build?</strong>\n<strong>What would you do differently next time?</strong> What might you improve in your function design?</p>", "Unit 2 - Functions/W10-4 - Virtual Robot Simulator - Exploration.md": "<h1>Virtual Robotics Challenge: The Power of Functions</h1>\n<p>Welcome to the Web-Based Robotics Simulator! In this project, you will program a virtual robot to navigate challenges and create designs. The primary goal is not just to complete a task, but to demonstrate your understanding of how to use <strong>functions</strong> to write clean, organized, and powerful code.\nThis project is your opportunity to show what you know about breaking down complex problems into smaller, manageable pieces.</p>\n<h2>1. Your Mission: Choose a Challenge</h2>\n<p>Select <strong>one</strong> of the following challenges to solve. Think about which project best allows you to demonstrate your skills. You also have the option to design your own challenge.</p>\n<h4>Challenge A: The Polygon Artist</h4>\n<p>Write a single, smart function that can draw any regular polygon (triangle, square, pentagon, etc.).\n<strong>Goal:</strong> Create a function called draw_polygon(sides, side_length).\n<strong>Inputs:</strong> The function must accept the number of sides and the side_length as parameters.\n<strong>Demonstrates:</strong> Using parameters to create flexible, reusable code. You will need to calculate the correct angle to turn for any given number of sides.</p>\n<h4>Challenge B: The School Spirit Writer</h4>\n<p>Write a program that uses the robot's pen to draw the letters of our school's name: <strong>NIDO</strong>.\n<strong>Goal:</strong> Create a separate function for each letter: draw_N(), draw_I(), draw_D(), draw_O(). Then, write a main function write_nido() that calls these functions in order to write the full name.\n<strong>Demonstrates:</strong> Breaking a large problem (\"write NIDO\") into smaller, function-sized pieces and then combining those functions to solve the problem.</p>\n<h4>Challenge C: The Balloon Popper</h4>\n<p>Switch to the \"Slash Map\" and write a program to navigate the robot to pop all three balloons.\n<strong>Goal:</strong> Write a set of functions that work together to guide the robot from its starting point to each balloon. For example, you might create functions like go_to_first_balloon(), go_to_second_balloon(), etc.\n<strong>Demonstrates:</strong> Using functions to manage a more complex, sequential task. This challenge involves careful planning of turns and movements.</p>\n<h4>Challenge D: The Number Navigator</h4>\n<p>Switch to the \"Number Grid\" map and use the robot's sensors to interact with the numbered squares. This challenge focuses on using functions that return values to make decisions.\n<strong>Goal:</strong> Write a set of functions that use a sensor command (e.g., drivetrain.read_number()) to complete tasks based on logic.\n<strong>Tasks (Choose one or combine them):</strong>\n<strong>Level 1 (Even/Odd Sorter):</strong> Write a function is_odd(number) that returns True or False. Drive the robot over the grid and use your function to draw a square around all the odd numbers.\n<strong>Level 2 (Path Follower):</strong> Create a list of numbers (e.g., path = [1, 7, 12, 18, 25]). Write a program that makes the robot drive to each number in the list, in order.\n<strong>Level 3 (Perfect Squares):</strong> Write a function is_perfect_square(number) that returns True if a number is a perfect square (1, 4, 9, 16...). Drive the robot over the grid and use your function to mark them.\n<strong>Demonstrates:</strong> Using functions with return values, if/else statements to control the robot's actions, and processing data (like lists) to guide navigation.</p>\n<h4>Challenge E: The Open Challenge</h4>\n<p>Design your own challenge! It must be complex enough to require multiple functions. Discuss your idea with your teacher before you begin.\n<strong>Examples:</strong> Write a function that draws a shape based on user input, design a maze-solving algorithm, or create a reusable library of navigation functions (e.g., turn_right_90(), move_one_square()).\n<strong>Demonstrates:</strong> Advanced planning, creativity, and the ability to design a modular system from scratch.</p>\n<h2>2. How This Connects to Your Proficiency</h2>\n<p>This project is designed to let you show your skills at different levels. Here’s what demonstrating each level looks like in this project:\n<strong>Level 2.0 (Getting Started):</strong>\nYou can correctly call the robot's built-in commands (e.g., drivetrain.drive_for()).\nYou can write a simple function to perform a basic task, like drawing a square.\n<strong>Level 3.0 (Core Proficiency):</strong>\nYou successfully break down your chosen challenge into several well-designed functions.\nYour functions use parameters and/or return values where appropriate.\nYou document your functions, explaining their purpose, inputs, and outputs in your Design Report.\n<strong>Level 4.0 (Advanced Application):</strong>\nYou create highly reusable and efficient functions (like the draw_polygon function).\nYou create a collection of functions that work together as a cohesive system to solve a complex problem.\nYou might explore advanced concepts, like having functions call other functions to create more complex behaviors.</p>\n<h2>3. Getting Started: Your First Function</h2>\n<p>Before diving into your main challenge, let's warm up. Here is a simple example of a function that draws a square. You can use this as a starting point.\nOpen the.\nReview the <strong>Command Reference</strong> on the right-hand side to see what the robot can do.\nTry running this code in the editor!\n# A simple function to draw a square with a given side length\ndef draw_square(size):\n    \"\"\"\n    Draws a square by driving and turning four times.\n    Input: size (int) - the length of each side in pixels.\n    Output: None\n    \"\"\"\n    print(\"Starting to draw a square!\")\n    drivetrain.pen_down()\n    for _ in range(4):\n        drivetrain.drive_for(size)\n        drivetrain.turn_for(90)\n    drivetrain.pen_up()\n    print(\"Square complete!\")</p>\n<h1>--- Main Program ---</h1>\n<h1>This is where you call your functions to run them.</h1>\n<p>draw_square(100)\ndrivetrain.drive_for(150) # Move out of the way\ndraw_square(50)</p>\n<h2>4. Final Deliverable: The Design Report</h2>\n<p>After completing your programming challenge, you will present your work in a Design Report. This report explains how you used functions to build your solution. Use the following template to create your report.</p>\n<h3>Design Report: Functions and Modular Programming</h3>\n<h4>1. Project Overview &amp; Problem</h4>\n<p><strong>Which challenge did you choose?</strong> (e.g., Polygon Artist, Balloon Popper, etc.)\n<strong>What was the main problem you were trying to solve?</strong> (e.g., \"I needed to create a program that could pop all the balloons on the Slash Map.\")</p>\n<h4>2. Breaking Down the Problem</h4>\n<p><strong>How did you break your problem down into smaller tasks?</strong> (e.g., \"To pop all balloons, I first needed to get to the first balloon, then turn and find the second, and so on.\")\n<strong>How did you decide which tasks should become functions?</strong> (e.g., \"I made a function for each major part of the path, like Maps_to_target().\")</p>\n<h4>3. Function Showcase</h4>\n<p>For <strong>each</strong> major function you created, provide the following:\n<strong>Function Name:</strong> e.g., draw_polygon\n<strong>Purpose:</strong> What is this function supposed to do?\n<strong>Inputs (Parameters):</strong> What information does it need to work? If none, write \"None\".\n<strong>Outputs (Return Values):</strong> What useful information does it give back? If none, write \"None\".\n<strong>Code Snippet:</strong> Paste your Python code for the function here.\n<em>Example:</em>\n<em></em># Function Name: draw_square</p>\n<h1>Purpose: Draws a square with a specified side length.</h1>\n<h1>Inputs: size (the length of each side).</h1>\n<h1>Outputs: None.</h1>\n<p>def draw_square(size):\n    drivetrain.pen_down()\n    for _ in range(4):\n        drivetrain.drive_for(size)\n        drivetrain.turn_for(90)\n    drivetrain.pen_up()</p>\n<h4>4. How Your Functions Work Together</h4>\n<p><strong>Show the \"main\" part of your program</strong> where you call your functions to solve the challenge.\n<strong>Explain how the functions are called in order.</strong> Did any of your functions call other functions?</p>\n<h4>5. Testing</h4>\n<p><strong>How did you test your functions</strong> to make sure they worked correctly? (e.g., \"I tested draw_polygon with 3, 4, 5, and 8 sides to make sure the math was right.\")\n<strong>Did you find any bugs?</strong> How did you fix them?</p>\n<h4>6. Reflection</h4>\n<p><strong>How did using functions make your code clearer or easier to build?</strong>\n<strong>What would you do differently next time?</strong> What might you improve in your function design?</p>", "Unit 2 - Functions/W6-4 - Function Input_Output Prompt.md": "<h1>Go to Gemini Python Functions Partner</h1>\n<h1>Create a new chat.</h1>\n<h1>Type ‘begin’ to start an interactive chat about functions.</h1>\n<p>Practice your knowledge of functions - try at least 10 - 12 questions to get the concept down. </p>\n<h1>After answering 10 questions or so and feeling confident, ask for a summary. Paste the summary below this line.</h1>\n<p>—--------------------------------------------------------------------------------------------------------</p>"};
+function openMd(href,label){
+  var key=href.replace(/^\.\//,'');
+  var html=_C[key];
+  if(!html){
+    // try forward-slash normalisation
+    for(var k in _C){ if(k.replace(/\\/g,'/')===key.replace(/\\/g,'/'+'')){html=_C[k];break;} }
+  }
+  document.getElementById('md-file-label').textContent=label||key.split('/').pop().replace(/\.md$/i,'');
+  document.getElementById('md-content').innerHTML=html||'<p style="color:#c5221f">Not found: '+key+'</p>';
+  var box=document.getElementById('md-modal-box');box.scrollTop=0;
+  document.getElementById('md-modal').style.display='block';
+  document.body.style.overflow='hidden';
+}
+function closeMd(){
+  document.getElementById('md-modal').style.display='none';
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMd();});
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a');if(!a)return;
+  var h=(a.getAttribute('href')||'').trim();
+  if(h&&/\.md$/i.test(h)&&!/^https?:\/\//i.test(h)){
+    e.preventDefault();openMd(h,a.textContent.trim());
+  }
+});
+</script>
+</body>
+</html>
