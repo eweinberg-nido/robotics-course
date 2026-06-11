@@ -148,6 +148,24 @@
 
 
   .resource-local { cursor: default; color: var(--muted); }
+
+  /* SCALE TABS */
+  .scale-tabs { }
+  .scale-tab-bar { display:flex; flex-wrap:wrap; gap:0; border-bottom:2px solid var(--border); margin-bottom:1.25rem; }
+  .stab { padding:0.55rem 1rem; font-size:0.83rem; font-weight:500; border:none;
+          background:none; cursor:pointer; color:var(--muted);
+          border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; }
+  .stab:hover { color:var(--text); }
+  .stab.active { color:var(--accent); border-bottom-color:var(--accent); font-weight:700; }
+  .scale-panel { display:none; }
+  .scale-panel.active { display:block; }
+  .sd { border:1px solid var(--border); border-radius:10px; margin-bottom:0.875rem; overflow:hidden; }
+  .sd-head { display:flex; align-items:center; gap:0.6rem; padding:0.55rem 0.875rem; font-weight:700; font-size:0.8rem; }
+  .sd-4 .sd-head { background:#fce8e6; color:#c5221f; }
+  .sd-3 .sd-head { background:#e6f4ea; color:#1e7e34; }
+  .sd-2 .sd-head { background:#e8f0fe; color:#1565c0; }
+  .sd-score { font-size:1rem; min-width:2rem; }
+  .sd-body { padding:0.7rem 0.875rem; font-size:0.875rem; line-height:1.6; color:var(--text); }
   /* LESSON CARDS */
   .lc { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.875rem; overflow: hidden; }
   .lc-header { padding: 0.55rem 0.875rem; background: #f1f3f4; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
@@ -1050,99 +1068,18 @@
   This course uses Nido de Aguilas's proficiency scale (0–4). Score 3.0 is the priority standard — the learning goal. Score 2.0 covers foundational vocabulary and simpler processes. Score 4.0 requires in-depth inference, transfer, and application. Students earn half-point scores (1.5, 2.5, 3.5) for partial progress between whole levels.
 </div>
 
-<div class="card" style="overflow-x:auto;">
-  <h3 style="margin-bottom:1rem;">Standard 1: Communication [Documentation]</h3>
-  <table class="scale-table">
-    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
-    <tbody>
-      <tr class="scale-4"><td>4.0</td><td>Documentation is detailed enough that another student could replicate the design. Communicates elements of the design in a particularly engaging or innovative way.</td></tr>
-      <tr class="scale-3"><td>3.0</td><td>Communicates a detailed explanation of a design problem, the state of the proposed solution, and its features. Structures documentation logically from one stage to the next. Uses design principles and appropriate text, images, and video to communicate with an audience.</td></tr>
-      <tr class="scale-2"><td>2.0</td><td>Shows elements of the design process using text, visuals, and graphic design principles. Identifies the problem and proposed solution at a point in time. Explains how a design meets the requirements of a problem.</td></tr>
-      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
-    </tbody>
-  </table>
+<div class="card scale-tabs">
+<div class="scale-tab-bar"><button class="stab active" onclick="showScale(0)">Communication</button><button class="stab" onclick="showScale(1)">Iterations</button><button class="stab" onclick="showScale(2)">Hardware I/O</button><button class="stab" onclick="showScale(3)">Events</button><button class="stab" onclick="showScale(4)">Functions</button><button class="stab" onclick="showScale(5)">Algorithms</button></div>
+<div class="scale-panel active" id="scale-panel-0"><p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Communication [Documentation]</p><div class="sd sd-4"><div class="sd-head"><span class="sd-score">4.0</span>Exceeds standard</div><div class="sd-body">Documentation is detailed enough that another student could replicate the design. Communicates elements of the design in a particularly engaging or innovative way.</div></div><div class="sd sd-3"><div class="sd-head"><span class="sd-score">3.0</span>Meets standard</div><div class="sd-body">Communicates a detailed explanation of a design problem, the state of the proposed solution, and its features. Structures documentation logically from one stage to the next. Uses design principles and appropriate text, images, and video to communicate with an audience.</div></div><div class="sd sd-2"><div class="sd-head"><span class="sd-score">2.0</span>Approaching standard</div><div class="sd-body">Shows elements of the design process using text, visuals, and graphic design principles. Identifies the problem and proposed solution at a point in time. Explains how a design meets the requirements of a problem.</div></div></div><div class="scale-panel" id="scale-panel-1"><p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Prototypes &amp; Iterations [Design Process]</p><div class="sd sd-4"><div class="sd-head"><span class="sd-score">4.0</span>Exceeds standard</div><div class="sd-body">Creates a program or prototype that helps solve a problem for someone else in the school. Shows others how to test and improve their prototypes. Finds creative ways to make the program do more than what was asked.</div></div><div class="sd sd-3"><div class="sd-head"><span class="sd-score">3.0</span>Meets standard</div><div class="sd-body">Creates and tests multiple versions of a program/prototype that solves a problem, explaining personal design choices. Analyzes specific challenges in each version and how to address them. Demonstrates how testing and feedback leads to changes.</div></div><div class="sd sd-2"><div class="sd-head"><span class="sd-score">2.0</span>Approaching standard</div><div class="sd-body">Modifies existing code to create a basic working prototype. Tests a prototype against given requirements. Explains basic changes between versions.</div></div></div><div class="scale-panel" id="scale-panel-2"><p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Hardware Inputs &amp; Outputs [Technology Use]</p><div class="sd sd-4"><div class="sd-head"><span class="sd-score">4.0</span>Exceeds standard</div><div class="sd-body">Builds systems that use multiple sensor types and outputs together. Finds creative new ways to use the hardware. Adds features that help find and fix hardware problems.</div></div><div class="sd sd-3"><div class="sd-head"><span class="sd-score">3.0</span>Meets standard</div><div class="sd-body">Connects sensors and outputs to a control board and demonstrates that outputs correctly respond to inputs. Correctly implements inputs and outputs in code within a larger program. Troubleshoots connections between power, sensors, and control boards.</div></div><div class="sd sd-2"><div class="sd-head"><span class="sd-score">2.0</span>Approaching standard</div><div class="sd-body">Picks appropriate sensors (analog/digital) and outputs for a project and connects them correctly. Follows diagrams to wire a circuit. Changes example code to read inputs and set outputs.</div></div></div><div class="scale-panel" id="scale-panel-3"><p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Responding to Events [Technology Use]</p><div class="sd sd-4"><div class="sd-head"><span class="sd-score">4.0</span>Exceeds standard</div><div class="sd-body">Makes programs that handle many different events simultaneously. Creates helpful ways to show what events are happening. Adds special code to handle unexpected problems or errors.</div></div><div class="sd sd-3"><div class="sd-head"><span class="sd-score">3.0</span>Meets standard</div><div class="sd-body">Writes code that responds correctly when buttons are pressed or sensors activated. Makes programs that handle different types of events. Shows clearly when events are detected and what the program does in response.</div></div><div class="sd sd-2"><div class="sd-head"><span class="sd-score">2.0</span>Approaching standard</div><div class="sd-body">Finds and names the different events in example programs. Explains what happens when different events occur. Makes simple changes to how programs respond to events.</div></div></div><div class="scale-panel" id="scale-panel-4"><p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Functions &amp; Modular Code [Technology Use]</p><div class="sd sd-4"><div class="sd-head"><span class="sd-score">4.0</span>Exceeds standard</div><div class="sd-body">Reorganizes complex code to make it clearer and more efficient. Creates a collection of functions that can be used in different projects. Uses advanced ways to make functions work together.</div></div><div class="sd sd-3"><div class="sd-head"><span class="sd-score">3.0</span>Meets standard</div><div class="sd-body">Designs and uses functions with appropriate inputs and outputs (parameters and return values). Breaks down a personal project into smaller, function-sized pieces. Documents functions with examples showing their specific use (purpose, parameters, return values).</div></div><div class="sd sd-2"><div class="sd-head"><span class="sd-score">2.0</span>Approaching standard</div><div class="sd-body">Identifies function inputs, outputs, and basic operations. Demonstrates proper function calling syntax with different parameter types. Tests functions using provided test cases.</div></div></div><div class="scale-panel" id="scale-panel-5"><p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Planning &amp; Algorithms [Technology Use]</p><div class="sd sd-4"><div class="sd-head"><span class="sd-score">4.0</span>Exceeds standard</div><div class="sd-body">Creates especially clear and efficient solutions. Uses advanced ways to control program flow. Designs solutions that can be applied to similar problems.</div></div><div class="sd sd-3"><div class="sd-head"><span class="sd-score">3.0</span>Meets standard</div><div class="sd-body">Creates detailed flowcharts and pseudocode to plan program logic. Implements complex control structures using compound boolean operators and switch/case statements. Designs and documents algorithms that solve multi-step problems.</div></div><div class="sd sd-2"><div class="sd-head"><span class="sd-score">2.0</span>Approaching standard</div><div class="sd-body">Draws simple flowcharts to show how a program will work. Follows and adjusts existing code to solve a problem. Uses and adjusts basic program controls (if/then, loops) from example code.</div></div></div>
 </div>
+<script>
+function showScale(n) {
+  document.querySelectorAll('.stab').forEach(function(b,i){ b.classList.toggle('active', i===n); });
+  document.querySelectorAll('.scale-panel').forEach(function(p,i){ p.classList.toggle('active', i===n); });
+}
+</script>
 
-<div class="card" style="overflow-x:auto;">
-  <h3 style="margin-bottom:1rem;">Standard 2: Prototypes &amp; Iterations [Design Process]</h3>
-  <table class="scale-table">
-    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
-    <tbody>
-      <tr class="scale-4"><td>4.0</td><td>Creates a program or prototype that helps solve a problem for someone else in the school. Shows others how to test and improve their prototypes. Finds creative ways to make the program do more than what was asked.</td></tr>
-      <tr class="scale-3"><td>3.0</td><td>Creates and tests multiple versions of a program/prototype that solves a problem, explaining personal design choices. Analyzes specific challenges in each version and how to address them. Demonstrates how testing and feedback leads to changes.</td></tr>
-      <tr class="scale-2"><td>2.0</td><td>Modifies existing code to create a basic working prototype. Tests a prototype against given requirements. Explains basic changes between versions.</td></tr>
-      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
-    </tbody>
-  </table>
-</div>
 
-<div class="card" style="overflow-x:auto;">
-  <h3 style="margin-bottom:1rem;">Standard 3: Hardware Inputs &amp; Outputs [Technology Use]</h3>
-  <table class="scale-table">
-    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
-    <tbody>
-      <tr class="scale-4"><td>4.0</td><td>Builds systems that use multiple sensor types and outputs together. Finds creative new ways to use the hardware. Adds features that help find and fix hardware problems.</td></tr>
-      <tr class="scale-3"><td>3.0</td><td>Connects sensors and outputs to a control board and demonstrates that outputs correctly respond to inputs. Correctly implements inputs and outputs in code within a larger program. Troubleshoots connections between power, sensors, and control boards.</td></tr>
-      <tr class="scale-2"><td>2.0</td><td>Picks appropriate sensors (analog/digital) and outputs for a project and connects them correctly. Follows diagrams to wire a circuit. Changes example code to read inputs and set outputs.</td></tr>
-      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="card" style="overflow-x:auto;">
-  <h3 style="margin-bottom:1rem;">Standard 4: Responding to Events [Technology Use]</h3>
-  <table class="scale-table">
-    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
-    <tbody>
-      <tr class="scale-4"><td>4.0</td><td>Makes programs that handle many different events simultaneously. Creates helpful ways to show what events are happening. Adds special code to handle unexpected problems or errors.</td></tr>
-      <tr class="scale-3"><td>3.0</td><td>Writes code that responds correctly when buttons are pressed or sensors activated. Makes programs that handle different types of events. Shows clearly when events are detected and what the program does in response.</td></tr>
-      <tr class="scale-2"><td>2.0</td><td>Finds and names the different events in example programs. Explains what happens when different events occur. Makes simple changes to how programs respond to events.</td></tr>
-      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="card" style="overflow-x:auto;">
-  <h3 style="margin-bottom:1rem;">Standard 5: Functions &amp; Modular Code [Technology Use]</h3>
-  <table class="scale-table">
-    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
-    <tbody>
-      <tr class="scale-4"><td>4.0</td><td>Reorganizes complex code to make it clearer and more efficient. Creates a collection of functions that can be used in different projects. Uses advanced ways to make functions work together.</td></tr>
-      <tr class="scale-3"><td>3.0</td><td>Designs and uses functions with appropriate inputs and outputs (parameters and return values). Breaks down a personal project into smaller, function-sized pieces. Documents functions with examples showing their specific use (purpose, parameters, return values).</td></tr>
-      <tr class="scale-2"><td>2.0</td><td>Identifies function inputs, outputs, and basic operations. Demonstrates proper function calling syntax with different parameter types. Tests functions using provided test cases.</td></tr>
-      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="card" style="overflow-x:auto;">
-  <h3 style="margin-bottom:1rem;">Standard 6: Planning &amp; Algorithms [Technology Use]</h3>
-  <table class="scale-table">
-    <thead><tr><th>Level</th><th>What the student does</th></tr></thead>
-    <tbody>
-      <tr class="scale-4"><td>4.0</td><td>Creates especially clear and efficient solutions. Uses advanced ways to control program flow. Designs solutions that can be applied to similar problems.</td></tr>
-      <tr class="scale-3"><td>3.0</td><td>Creates detailed flowcharts and pseudocode to plan program logic. Implements complex control structures using compound boolean operators and switch/case statements. Designs and documents algorithms that solve multi-step problems.</td></tr>
-      <tr class="scale-2"><td>2.0</td><td>Draws simple flowcharts to show how a program will work. Follows and adjusts existing code to solve a problem. Uses and adjusts basic program controls (if/then, loops) from example code.</td></tr>
-      <tr class="scale-1"><td>1.0</td><td>With help, partial understanding of 2.0 and 3.0 content.</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="card">
-  <h3>CSTA Standards alignment</h3>
-  <p style="font-size:0.875rem;color:var(--muted);margin-bottom:0.5rem;">This course is designed around the following Computer Science Teachers Association (CSTA) standards:</p>
-  <table class="lesson-table">
-    <thead><tr><th>Course Standard</th><th>CSTA Standard</th></tr></thead>
-    <tbody>
-      <tr><td>Communication</td><td>CSTA 3A-AP-23 — Document design decisions using text, graphics, presentations, and/or demonstrations in the development of complex programs.</td></tr>
-      <tr><td>Iterations &amp; Prototypes</td><td>CSTA 3A-AP-13 — Create prototypes that use algorithms to solve computational problems by leveraging prior student knowledge and personal interests.</td></tr>
-      <tr><td>Hardware I/O</td><td>CSTA 3B-CS-02 — Illustrate ways computing systems implement logic, input, and output through hardware components.</td></tr>
-      <tr><td>Events</td><td>CSTA 3A-AP-16 — Design and iteratively develop computational artifacts for practical intent, personal expression, or to address a societal issue by using events to initiate instructions.</td></tr>
-      <tr><td>Functions</td><td>CSTA 2-AP-14 — Create procedures with parameters to organize code and make it easier to reuse. / CSTA 3A-AP-17 — Decompose problems into smaller components through systematic analysis, using constructs such as procedures, modules, and/or objects.</td></tr>
-      <tr><td>Algorithms</td><td>CSTA 2-AP-10 — Use flowcharts and/or pseudocode to address complex problems as algorithms. / CSTA 2-AP-12 — Design and iteratively develop programs that combine control structures, including nested loops and compound conditionals.</td></tr>
-    </tbody>
-  </table>
-</div>
 
 
 <!-- ============================================================ -->
